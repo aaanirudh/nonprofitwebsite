@@ -1,9 +1,15 @@
 const path = require("path");
+const webpack = require("webpack");
 const CURRENT_WORKING_DIR = process.cwd();
 
 const config = {
-  mode: "production",
-  entry: [path.join(CURRENT_WORKING_DIR, "client/main.js")],
+  name: "browser",
+  mode: "development",
+  devtool: "eval-source-map",
+  entry: [
+    "webpack-hot-middleware/client?reload=true",
+    path.join(CURRENT_WORKING_DIR, "client/main.js"),
+  ],
   output: {
     path: path.join(CURRENT_WORKING_DIR, "/dist"),
     filename: "bundle.js",
@@ -25,6 +31,15 @@ const config = {
         use: "css-loader",
       },
     ],
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
+  resolve: {
+    alias: {
+      "react-dom": "@hot-loader/react-dom",
+    },
   },
 };
 
