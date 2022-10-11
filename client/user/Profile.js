@@ -4,6 +4,37 @@ import auth from "../auth/auth-helper";
 import { read } from "./api-user.js";
 import { Redirect, Link } from "react-router-dom";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import Edit from "@material-ui/icons/Edit";
+import Divider from "@material-ui/core/Divider";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 600,
+    margin: "auto",
+    padding: theme.spacing(3),
+    marginTop: theme.spacing(5),
+  },
+  title: {
+    marginTop: theme.spacing(1),
+    color: theme.palette.protectedTitle,
+  },
+  bigAvatar: {
+    width: 60,
+    height: 60,
+    margin: 10,
+  },
+}));
+
 /**
  * Profile (parent: MainRouter)
  * @param {Object} {match} -  item    : post object
@@ -16,6 +47,7 @@ export default function Profile({ match }) {
     user: {},
     redirectToLogin: false,
   });
+  const classes = useStyles();
 
   const jwt = auth.isAuthenticated();
 
@@ -49,44 +81,60 @@ export default function Profile({ match }) {
 
   return (
     <div>
-      <h6>Profile</h6>
+      <Paper className={classes.root} elevation={1}>
+        <Typography variant="h6" className={classes.title}>
+          Profile
+        </Typography>
 
-      <ul>
-        <li>
-          <img
-            src={
-              values.user._id
-                ? `/api/users/photo/${values.user._id}?${new Date().getTime()}`
-                : "/api/users/defaultphoto"
-            }
-          />
-          <p>
-            {values.user.name +
-              " (" +
-              (values.user.organization ? "Organization" : "Student") +
-              ")"}
-          </p>
-          {auth.isAuthenticated().user &&
-            auth.isAuthenticated().user._id == values.user._id && (
-              <p>
-                <Link to={"/user/edit/" + values.user._id}>
-                  <h6 aria-label="Edit" color="primary">
-                    Edit
-                  </h6>
-                </Link>
+        <List dense>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar
+                src={
+                  values.user._id
+                    ? `/api/users/photo/${
+                        values.user._id
+                      }?${new Date().getTime()}`
+                    : "/api/users/defaultphoto"
+                }
+                className={classes.bigAvatar}
+              />
+            </ListItemAvatar>
+            <ListItemText
+              primary={
+                values.user.name +
+                " (" +
+                (values.user.organization ? "Organization" : "Student") +
+                ")"
+              }
+              secondary={values.user.location}
+            />{" "}
+            {auth.isAuthenticated().user &&
+              auth.isAuthenticated().user._id == values.user._id && (
+                <ListItemSecondaryAction>
+                  <Link to={"/user/edit/" + values.user._id}>
+                    <IconButton aria-label="Edit" color="primary">
+                      <Edit />
+                    </IconButton>
+                  </Link>
 
-                <DeleteUser userId={values.user._id} />
-              </p>
-            )}
-        </li>
+                  <DeleteUser userId={values.user._id} />
+                </ListItemSecondaryAction>
+              )}
+          </ListItem>
 
-        <br />
+          <Divider />
 
-        <li>
-          <p>{values.user.about}</p>
-        </li>
-        <li>{"Joined: " + new Date(values.user.created).toDateString()}</li>
-      </ul>
+          <ListItem>
+            <ListItemText
+              primary={values.user.about}
+              secondary={
+                "Joined: " + new Date(values.user.created).toDateString()
+              }
+            />
+          </ListItem>
+        </List>
+      </Paper>
     </div>
   );
 }

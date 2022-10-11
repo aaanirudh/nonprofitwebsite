@@ -14,6 +14,9 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import MainRouter from "./../client/MainRouter";
 import { StaticRouter } from "react-router-dom";
+import { ServerStyleSheets, ThemeProvider } from "@material-ui/styles";
+
+import theme from "./../client/theme";
 
 import devBundle from "./devBundle";
 
@@ -35,24 +38,31 @@ app.use(cors());
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 // mount routes
-app.use("/api/users/", userRoutes);
-app.use("/api/auth/", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 //Create structure with server-side rendering
 app.get("*", (req, res) => {
+  const sheets = new ServerStyleSheets();
   const context = {};
   const markup = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url} context={context}>
-      <MainRouter />
-    </StaticRouter>
+    sheets.collect(
+      <StaticRouter location={req.url} context={context}>
+        <ThemeProvider theme={theme}>
+          <MainRouter />
+        </ThemeProvider>
+      </StaticRouter>
+    )
   );
   if (context.url) {
     return res.redirect(303, context.url);
   }
+  // res.setHeader("content-type", "application/javascript");
+  const css = sheets.toString();
   res.status(200).send(
     Template({
       markup: markup,
-      // css: css,
+      css: css,
     })
   );
 });

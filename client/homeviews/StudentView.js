@@ -1,9 +1,8 @@
 import React from "react";
-import auth from "../auth/auth-helper";
-
+import Typography from "@material-ui/core/Typography";
 /**
- * View for a Student.
+ * View if user is a Student
  */
-export default function StudentView() {
-  return <div>This is student page</div>;
+export default function OrganizationView() {
+  return <Typography variant="h3">This is student page</Typography>;
 }

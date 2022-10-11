@@ -1,7 +1,42 @@
 import React from "react";
 import auth from "./../auth/auth-helper";
 import { Link, withRouter } from "react-router-dom";
-import "./Menu.css";
+
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Avatar from "@material-ui/core/Avatar";
+import CONSAMSLogo from "./../assets/images/logo.svg";
+import MenuDropdown from "./MenuDropdown";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    spacing: 4,
+  },
+  menu: {
+    margin: theme.spacing(1),
+    textDecoration: "none",
+  },
+  title: {
+    flexGrow: 1,
+  },
+  customizeToolbar: {
+    minHeight: 100,
+  },
+  smallAvatar: {
+    width: 25,
+    height: 25,
+  },
+  menuButton: {
+    backgroundColor: "#97B6E4",
+    textTransform: "none",
+    margin: "0 5px",
+  },
+}));
 
 /**
  * Change color of menu item when selected
@@ -12,58 +47,92 @@ import "./Menu.css";
  *
  */
 const isActive = (history, path) => {
-  if (history.location.pathname == path) return { fontWeight: "bold" };
-  else return { fontWeight: "normal" };
+  // if (history.location.pathname == path) return { color: "#ff4081" };
+  // else return { color: "#ffffff" };
 };
 
 /**
  * Menu that varies based on user type and whether they are logged in
  */
 const Menu = withRouter(function ({ history }) {
+  const classes = useStyles();
+
   return (
-    <div>
-      <Link to="/">
-        <h6 aria-label="Home">CONSAMS</h6>
-      </Link>
-      {!auth.isAuthenticated() && (
-        <span>
-          <Link to="/register">
-            <button className="lol" style={isActive(history, "/register")}>
-              Register
-            </button>
-          </Link>
+    <AppBar color="light" position="static">
+      <Toolbar color="light" className={classes.customizeToolbar}>
+        <Link className={classes.title} to="/">
+          <img src={CONSAMSLogo} alt="logo" width="150px" />
+        </Link>
+        <MenuDropdown
+          title="About Us"
+          options={["About CONSAMS", "Our History", "Leadership"]}
+        />
+        <MenuDropdown title="Partners" />
+        <MenuDropdown
+          title="Memberships"
+          options={["About Memberships", "Membership Fees", "Benefits"]}
+        />
+        <MenuDropdown
+          title="Media"
+          options={["News", "Photo Gallery", "Newsletter"]}
+        />
+        <MenuDropdown
+          title="Resources"
+          options={[
+            "Courses",
+            "Blogs",
+            "Publications",
+            "Books",
+            "Podcasts",
+            "Videos/Films",
+          ]}
+        />
 
-          <Link to="/login">
-            <button style={isActive(history, "/login")}>Login</button>
-          </Link>
-        </span>
-      )}
-      {auth.isAuthenticated() && (
-        <span>
-          <Link to={"/user/" + auth.isAuthenticated().user._id}>
-            <button
-              style={isActive(
-                history,
-                "/user/" + auth.isAuthenticated().user._id
-              )}
+        {!auth.isAuthenticated() && (
+          <span>
+            <Link style={{ textDecoration: "none" }} to="/login">
+              <Button variant="contained" className={classes.menuButton}>
+                Log In
+              </Button>
+            </Link>
+            <Link style={{ textDecoration: "none" }} to="/register">
+              <Button className={classes.menuButton} variant="contained">
+                Register
+              </Button>
+            </Link>
+          </span>
+        )}
+        {auth.isAuthenticated() && (
+          <span>
+            <Link to={"/user/" + auth.isAuthenticated().user._id}>
+              <Button
+                className={classes.menu}
+                style={isActive(
+                  history,
+                  "/user/" + auth.isAuthenticated().user._id
+                )}
+              >
+                <Avatar
+                  className={classes.smallAvatar}
+                  src={"/api/users/photo/" + auth.isAuthenticated().user._id}
+                />
+              </Button>
+            </Link>
+            {}
+
+            <Button
+              className={classes.menuButton}
+              variant="contained"
+              onClick={() => {
+                auth.clearJWT(() => history.push("/"));
+              }}
             >
-              <img
-                src={"/api/users/photo/" + auth.isAuthenticated().user._id}
-              />
-            </button>
-          </Link>
-          {}
-
-          <button
-            onClick={() => {
-              auth.clearJWT(() => history.push("/"));
-            }}
-          >
-            Log Out
-          </button>
-        </span>
-      )}
-    </div>
+              Log Out
+            </Button>
+          </span>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 });
 

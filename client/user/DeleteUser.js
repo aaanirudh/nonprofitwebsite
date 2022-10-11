@@ -3,6 +3,14 @@ import auth from "./../auth/auth-helper";
 import { remove } from "./api-user.js";
 import { Redirect } from "react-router-dom";
 
+import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 /**
  * DeleteUser (parent: Profile)
  * @param {Object} props -  userId : id of user to be deleted
@@ -10,9 +18,19 @@ import { Redirect } from "react-router-dom";
  * @returns {Object} - Button and confirm window to delete own user
  */
 export default function DeleteUser(props) {
+  const [open, setOpen] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
   const jwt = auth.isAuthenticated();
+
+  //open confirm window
+  const clickButton = () => {
+    setOpen(true);
+  };
+  //close confirm window
+  const handleRequestClose = () => {
+    setOpen(false);
+  };
 
   //call api-post remove function to delete account
   const deleteAccount = () => {
@@ -38,9 +56,31 @@ export default function DeleteUser(props) {
 
   return (
     <span>
-      <button aria-label="Delete" onClick={deleteAccount}>
-        Delete Account (deletes account, no safety yet)
-      </button>
+      <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
+        <DeleteIcon />
+      </IconButton>
+
+      <Dialog open={open} onClose={handleRequestClose}>
+        <DialogTitle>{"Delete Account"}</DialogTitle>
+
+        <DialogContent>
+          <DialogContentText>Confirm to delete your account.</DialogContentText>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleRequestClose} color="primary">
+            Cancel
+          </Button>
+
+          <Button
+            onClick={deleteAccount}
+            color="secondary"
+            autoFocus="autoFocus"
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </span>
   );
 }

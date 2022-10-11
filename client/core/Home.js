@@ -3,6 +3,7 @@ import auth from "./../auth/auth-helper";
 import OrganizationView from "../homeviews/OrganizationView";
 import StudentView from "../homeviews/StudentView";
 import HomeView from "./../homeviews/HomeView";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 /**
  * Homepage
@@ -23,6 +24,7 @@ export default function Home({ history }) {
   }, []);
   return (
     <div>
+      <CssBaseline />
       {defaultPage ? (
         <span>
           {auth.isAuthenticated().user.organization ? (

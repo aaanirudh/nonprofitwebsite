@@ -2,6 +2,10 @@ import React from "react";
 import MainRouter from "./MainRouter";
 import { BrowserRouter } from "react-router-dom";
 import { hot } from "react-hot-loader";
+import { ThemeProvider } from "@material-ui/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import theme from "./theme";
 
 /**
  * Creates structure for App Router and sets theme (parent: main)
@@ -16,7 +20,11 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      <MainRouter />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <MainRouter />
+      </ThemeProvider>
     </BrowserRouter>
   );
 };
