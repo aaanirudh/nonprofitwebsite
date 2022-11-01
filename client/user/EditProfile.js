@@ -167,8 +167,7 @@ export default function EditProfile({ match }) {
         />
         <label htmlFor="icon-button-file">
           <Button variant="contained" color="default" component="span">
-            Upload
-            <FileUpload />
+            Upload Image
           </Button>
         </label>{" "}
         <span className={classes.filename}>

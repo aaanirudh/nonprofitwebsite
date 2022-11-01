@@ -8,6 +8,7 @@ import helmet from "helmet";
 import Template from "./../template";
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
+import blogRoutes from "./routes/blog.routes";
 
 // modules for server side rendering
 import React from "react";
@@ -39,6 +40,7 @@ app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 // mount routes
 app.use("/api/users", userRoutes);
+app.use("/api/blog", blogRoutes);
 app.use("/api/auth", authRoutes);
 
 //Create structure with server-side rendering
