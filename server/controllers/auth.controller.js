@@ -18,14 +18,14 @@ const login = async (req, res) => {
 
     //Return that email isn't registered
     if (!user) {
-      return res.status("401").json({
+      return res.status(401).json({
         error: "User not found",
       });
     }
 
     //Check if user email and password match
     if (!user.authenticate(req.body.password)) {
-      return res.status("401").send({
+      return res.status(401).send({
         error: "Incorrect password.",
       });
     }
@@ -53,7 +53,7 @@ const login = async (req, res) => {
       },
     });
   } catch (err) {
-    return res.status("401").json({
+    return res.status(401).json({
       error: "Could not log in",
     });
   }

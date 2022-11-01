@@ -6,6 +6,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuList from "@material-ui/core/MenuList";
+import { Link } from "react-router-dom";
 
 export default function MenuDropdown({ title, options }) {
   const [open, setOpen] = useState(false);
@@ -62,7 +63,14 @@ export default function MenuDropdown({ title, options }) {
                   // onKeyDown={handleListKeyDown}
                 >
                   {options?.map((val) => (
-                    <MenuItem onClick={handleClose}>{val}</MenuItem>
+                    <MenuItem onClick={() => console.log(val)}>
+                      <Link
+                        to={"/" + val.toLowerCase()}
+                        style={{ textDecoration: "none" }}
+                      >
+                        {val}
+                      </Link>
+                    </MenuItem>
                   ))}
                 </MenuList>
               </ClickAwayListener>
