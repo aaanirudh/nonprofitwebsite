@@ -10,7 +10,6 @@ import theme from "./theme";
 /**
  * Creates structure for App Router and sets theme (parent: main)
  * @returns {Object} - Router with theme
- * Arthur Comments
  */
 const App = () => {
   React.useEffect(() => {
