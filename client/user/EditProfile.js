@@ -114,7 +114,7 @@ export default function EditProfile({ match }) {
     let userData = new FormData();
     values.name && userData.append("name", values.name);
     values.email && userData.append("email", values.email);
-    values.passoword && userData.append("passoword", values.passoword);
+    values.password && userData.append("passoword", values.passoword);
     values.about && userData.append("about", values.about);
     values.photo && userData.append("photo", values.photo);
 
