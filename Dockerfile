@@ -6,4 +6,5 @@ COPY . .
 ENV LANG=en_US.UTF-8
 EXPOSE 8080
 RUN npm install
-CMD ["npm", "run", "dev"]
+RUN npm run build
+CMD ["npm", "start"]
