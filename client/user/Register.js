@@ -184,7 +184,7 @@ export default function Register() {
         </DialogContent>
 
         <DialogActions>
-          <Link to="/login">
+          <Link style={{ textDecoration: "none" }} to="/login">
             <Button color="primary" autoFocus="autoFocus" variant="contained">
               Log In
             </Button>

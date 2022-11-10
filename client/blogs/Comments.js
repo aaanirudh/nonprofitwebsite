@@ -113,7 +113,12 @@ export default function Comments(props) {
             props.postedbyId === item.postedBy._id ? "#fff1f5" : "white",
         }}
       >
-        <Link to={"/user/" + item.postedBy._id}>{item.postedBy.name}</Link>
+        <Link
+          style={{ textDecoration: "none" }}
+          to={"/user/" + item.postedBy._id}
+        >
+          {item.postedBy.name}
+        </Link>
         <br />
         {item.text}
         <span className={classes.commentDate}>

@@ -12,7 +12,6 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
-import FileUpload from "@material-ui/icons/AddPhotoAlternate";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -225,9 +224,7 @@ export default function EditProfile({ match }) {
         <br />{" "}
         {values.error && (
           <Typography component="p" color="error">
-            <Icon color="error" className={classes.error}>
-              error
-            </Icon>
+            <Icon color="error" className={classes.error}></Icon>
             {values.error}
           </Typography>
         )}

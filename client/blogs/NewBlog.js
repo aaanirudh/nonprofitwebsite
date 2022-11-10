@@ -136,9 +136,9 @@ export default function NewBlog() {
 
           {values.error && (
             <Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>
+              {/* <Icon color="error" className={classes.error}>
                 error
-              </Icon>
+              </Icon> */}
               {values.error}
             </Typography>
           )}

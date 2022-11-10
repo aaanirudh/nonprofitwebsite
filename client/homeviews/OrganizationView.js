@@ -8,12 +8,17 @@ import { Link } from "react-router-dom";
 export default function OrganizationView() {
   return (
     <>
+      <Typography variant="h3">This is org page</Typography>
       <Button variant="contained">
         <Link style={{ textDecoration: "none" }} to="/createblog">
           Create Blog Post
         </Link>
       </Button>
-      <Typography variant="h3">This is org page</Typography>
+      <Button variant="contained">
+        <Link style={{ textDecoration: "none" }} to="/blogs">
+          View Blog Posts
+        </Link>
+      </Button>
     </>
   );
 }

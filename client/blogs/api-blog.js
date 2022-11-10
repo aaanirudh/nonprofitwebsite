@@ -34,7 +34,7 @@ const listUserFeed = async (params, credentials, signal) => {
 
 const listBlogFeed = async (credentials, signal) => {
   try {
-    let response = await fetch("/api/blog", {
+    let response = await fetch("/api/blog/blogs", {
       method: "GET",
       signal: signal,
       headers: {

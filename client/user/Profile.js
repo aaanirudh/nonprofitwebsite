@@ -112,7 +112,10 @@ export default function Profile({ match }) {
             {auth.isAuthenticated().user &&
               auth.isAuthenticated().user._id == values.user._id && (
                 <ListItemSecondaryAction>
-                  <Link to={"/user/edit/" + values.user._id}>
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={"/user/edit/" + values.user._id}
+                  >
                     <IconButton aria-label="Edit" color="primary">
                       <Edit />
                     </IconButton>
