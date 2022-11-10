@@ -198,6 +198,7 @@ export default function Post(props) {
               src={"/api/users/photo/" + props.blog.postedBy._id}
             />
             <Link
+              style={{ textDecoration: "none" }}
               className={classes.subtitleVals}
               to={"/user/" + props.blog.postedBy._id}
             >

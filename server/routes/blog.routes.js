@@ -5,6 +5,8 @@ import blogCtrl from "../controllers/blog.controller";
 
 const router = express.Router();
 
+router.route("/blogs").get(authCtrl.requireLogin, blogCtrl.getFeed);
+
 router.route("/new/:userId").post(authCtrl.requireLogin, blogCtrl.create);
 
 router.route("/user/:userId").get(authCtrl.requireLogin, blogCtrl.listByUser);
@@ -22,8 +24,6 @@ router.route("/unlike/:blogId").put(authCtrl.requireLogin, blogCtrl.unlike);
 router
   .route("/:blogId")
   .delete(authCtrl.requireLogin, blogCtrl.isPoster, blogCtrl.remove);
-
-router.route("/").get(authCtrl.requireLogin, blogCtrl.getFeed);
 
 router.param("userId", userCtrl.userByID);
 router.param("blogId", blogCtrl.blogByID);

@@ -1,18 +1,34 @@
 import config from "./../config/config";
 import app from "./express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 //connect to database
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.mongoUri, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(config.mongoUri);
 mongoose.connection.on("error", () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`);
 });
+
+dotenv.config();
+/**
+ * Connects to database or exits process.
+ */
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("MongoDB is Connected...");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
+connectDB();
 
 //start up server
 const server = app.listen(config.port, (err) => {
