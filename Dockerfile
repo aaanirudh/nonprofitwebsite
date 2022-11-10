@@ -5,4 +5,4 @@ RUN npm install
 COPY . .
 ENV LANG=en_US.UTF-8
 EXPOSE 8080
-CMD [ "node", "./server.js" ]
+CMD [ "npm run build && npm start" ]
