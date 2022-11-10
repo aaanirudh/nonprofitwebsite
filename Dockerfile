@@ -7,4 +7,4 @@ ENV LANG=en_US.UTF-8
 EXPOSE 8080
 RUN npm install
 RUN npm run build
-RUN npm start
+CMD ["npm", "start"]
