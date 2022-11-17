@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import auth from "./../auth/auth-helper";
 import Post from "./Post";
+import { Button, Card, Grid, Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { listBlogFeed } from "./api-blog";
@@ -10,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     paddingTop: 0,
     paddingBottom: theme.spacing(3),
+  },
+  createButton: {
+    margin: theme.spacing(2),
   },
 }));
 
@@ -49,10 +54,29 @@ export default function Blogs() {
   };
 
   return (
-    <div style={{ marginTop: "24px" }}>
-      {posts.map((item, i) => {
-        return <Post blog={item} key={i} onRemove={removePost} />;
-      })}
-    </div>
+    <Grid container justify="center">
+      {auth.isAuthenticated().user.organization && (
+        <Grid container justify="center">
+          <Button
+            className={classes.createButton}
+            color="primary"
+            variant="contained"
+          >
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/createblog"
+            >
+              Create Blog Post
+            </Link>
+          </Button>
+        </Grid>
+      )}
+
+      <Grid item>
+        {posts.map((item, i) => {
+          return <Post blog={item} key={i} onRemove={removePost} />;
+        })}
+      </Grid>
+    </Grid>
   );
 }

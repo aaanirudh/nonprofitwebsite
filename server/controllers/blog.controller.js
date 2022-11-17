@@ -32,6 +32,7 @@ const blogByID = async (req, res, next, id) => {
 
 const create = async (req, res) => {
   try {
+    console.log(req.body);
     let blog = new Blog(req.body);
     blog["postedBy"] = req.profile;
     let result = await blog.save();
