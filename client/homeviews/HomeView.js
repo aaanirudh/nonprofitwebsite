@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   featuresTitle: {
     margin: theme.spacing(2, 0),
+    backgroundColor: "#CBC3E3",
   },
   payPalButton: {
     textTransform: "none",
@@ -95,52 +96,39 @@ export default function HomeView() {
         </Typography>
         <Grid container spacing={8}>
           <Grid item xs={12} sm={6} md={4}>
-            <Paper style={{ padding: "5px" }}>
+            <Paper>
               <Typography className={classes.featuresTitle} variant="h4">
-                Lorem ipsum dolor sit amet
+                Who We Are
               </Typography>
 
               <Typography component="h3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla par
+              <strong>To promote competency-based and other undergraduate and postgraduate curricula, appropriate to the needs and context of each participating country.  </strong>
               </Typography>
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Paper style={{ padding: "5px" }}>
+            <Paper>
               <Typography className={classes.featuresTitle} variant="h4">
-                Lorem ipsum dolor sit amet
+                Our Goals:
               </Typography>
 
               <Typography component="h3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla par
+              <strong>1. To promote faculty and trainee idea exchanges between the participating medical schools and other healthcare networks.</strong>
+              <br></br> <br></br>
+              <strong>2. To promote south-south and north-south partnerships.</strong>
               </Typography>
             </Paper>
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Paper style={{ padding: "5px" }}>
+            <Paper>
               <Typography className={classes.featuresTitle} variant="h4">
-                Lorem ipsum dolor sit amet
+                Get Involved
               </Typography>
 
               <Typography component="h3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla par
+              <strong> Sign up as a student or organization and better manage your students' courseload. Joinour mailing list to receive updates about our work and events, or reach out if you would like to explore partnerships or invite us to speak at your event or campus.</strong>
               </Typography>
             </Paper>
           </Grid>
