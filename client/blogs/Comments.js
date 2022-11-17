@@ -105,6 +105,7 @@ export default function Comments(props) {
 
   //Helper function containing comment body
   const commentBody = (item) => {
+    console.log(item);
     return (
       <p
         className={classes.commentText}
@@ -139,7 +140,6 @@ export default function Comments(props) {
       </p>
     );
   };
-
   return (
     <div className={classes.root}>
       <CardHeader
@@ -170,12 +170,17 @@ export default function Comments(props) {
         className={classes.cardHeader}
       />
       {props.comments.map((item, i) => {
+        console.log(item);
+        if (!item.postedBy) {
+          return <></>;
+        }
+
         return (
           <CardHeader
             avatar={
               <Avatar
                 className={classes.smallAvatar}
-                src={"/api/users/photo/" + item.postedBy._id}
+                src={"/api/users/photo/" + item.postedBy?._id}
               />
             }
             title={commentBody(item)}

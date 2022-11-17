@@ -9,6 +9,7 @@ import { listBlogFeed } from "./api-blog";
 
 const useStyles = makeStyles((theme) => ({
   card: {
+    maxWidth: 700,
     margin: "auto",
     paddingTop: 0,
     paddingBottom: theme.spacing(3),
