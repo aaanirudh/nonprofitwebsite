@@ -9,6 +9,8 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu";
 import Blogs from "./blogs/Blogs";
 import NewBlog from "./blogs/NewBlog";
+import Courses from "./courses/Courses";
+import NewCourse from "./courses/NewCourse";
 
 /**
  * MainRouter (parent: App)
@@ -26,7 +28,9 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile} />
         <Route path="/user/:userId" component={Profile} />
         <PrivateRoute path="/blogs" component={Blogs} />
+        <PrivateRoute path="/courses" component={Courses} />
         <PrivateRoute path="/createblog" component={NewBlog} />
+        <PrivateRoute path="/createcourse" component={NewCourse} />
       </Switch>
     </div>
   );
