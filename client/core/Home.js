@@ -27,18 +27,7 @@ export default function Home({ history }) {
   return (
     <div>
       <CssBaseline />
-      {loaded &&
-        (defaultPage ? (
-          <span>
-            {auth.isAuthenticated().user.organization ? (
-              <OrganizationView />
-            ) : (
-              <StudentView />
-            )}
-          </span>
-        ) : (
-          <HomeView />
-        ))}
+      <HomeView />
     </div>
   );
 }

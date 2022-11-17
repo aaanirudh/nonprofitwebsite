@@ -14,6 +14,9 @@ const UserSchema = new mongoose.Schema({
     match: [/.+\@.+\..+/, "Please fill a valid email address"],
     required: "Email is required",
   },
+  organizationName: {
+    type: String,
+  },
   hashed_password: {
     type: String,
     required: "Password is required",
@@ -28,6 +31,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  courses: [
+    {
+      type: String,
+    },
+  ],
   photo: {
     data: Buffer,
     contentType: String,

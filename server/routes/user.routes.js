@@ -10,6 +10,8 @@ router.route("/photo/:userId").get(userCtrl.photo, userCtrl.defaultPhoto); //acc
 
 router.route("/defaultphoto").get(userCtrl.defaultPhoto); //get default photo for user profile
 
+router.route("/organizations").get(userCtrl.getOrganizations);
+
 router
   .route("/:userId")
   .get(authCtrl.requireLogin, userCtrl.read) //get user information to be viewed in profile

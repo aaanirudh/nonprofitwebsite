@@ -1,4 +1,5 @@
 import User from "../models/user.model";
+import Organization from "../models/organization.model";
 import extend from "lodash/extend";
 import errorHandler from "./../helpers/dbErrorHandler";
 import formidable from "formidable";
@@ -39,10 +40,17 @@ const create = async (req, res) => {
   try {
     //save new user that has been created
     await user.save();
+    let findOrg = await Organization.findOne({
+      name: req.body.organizationName,
+    });
+    if (!findOrg) {
+      await Organization.create({ name: req.body.organizationName });
+    }
     return res.status(200).json({
       message: "Successfully registered",
     });
   } catch (err) {
+    console.log(err);
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err),
     });
@@ -153,6 +161,20 @@ const remove = async (req, res) => {
   }
 };
 
+const getOrganizations = async (req, res) => {
+  try {
+    let allOrgs = await Organization.find().select("name -_id");
+    let orgNames = [];
+    allOrgs.forEach(({ name }) => orgNames.push(name));
+
+    res.status(200).json(orgNames);
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
 export default {
   create,
   userByID,
@@ -161,4 +183,5 @@ export default {
   defaultPhoto,
   remove,
   update,
+  getOrganizations,
 };
