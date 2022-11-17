@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import auth from "./../auth/auth-helper";
-import { create } from "./api-blog.js";
+import auth from "../auth/auth-helper";
+import { create } from "./api-courses.js";
 import { Redirect } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,26 +37,25 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-
     width: "90%",
   },
   submit: {
     margin: theme.spacing(2),
     margin: "auto",
   },
-
   error: {
     verticalAlign: "middle",
   },
 }));
 
-export default function NewBlog() {
+export default function NewCourse() {
   const classes = useStyles();
 
   const jwt = auth.isAuthenticated();
 
   const [values, setValues] = useState({
     title: "",
+    link: "",
     description: "",
     error: "",
     redirectToReferrer: false,
@@ -76,8 +75,17 @@ export default function NewBlog() {
 
   //submit post to api-post to create
   const clickPost = () => {
+    setValues({ ...values, error: "Link is required." });
+    if (!values.link) {
+      return;
+    }
+    if (!values.link.includes("/embed/")) {
+      setValues({ ...values, error: "Link must be a valid embed link." });
+      return;
+    }
     const postData = {
       title: values.title || undefined,
+      link: values.link || undefined,
       description: values.description || undefined,
     };
     create(
@@ -99,7 +107,6 @@ export default function NewBlog() {
 
   //handle change in input
   const handleChange = (name) => (event) => {
-    console.log(event.target.value);
     setValues({ ...values, [name]: event.target.value });
   };
 
@@ -107,7 +114,7 @@ export default function NewBlog() {
 
   //redirect to home with values
   if (redirectToReferrer) {
-    return <Redirect to={{ pathname: "/" }} />;
+    return <Redirect to={{ pathname: "/courses" }} />;
   }
 
   return (
@@ -126,9 +133,19 @@ export default function NewBlog() {
           />
 
           <TextField
+            placeholder="Youtube Link"
+            multiline
+            rows="1"
+            value={values.link}
+            onChange={handleChange("link")}
+            className={classes.textField}
+            margin="normal"
+          />
+
+          <TextField
             placeholder="Description..."
             multiline
-            rows="8"
+            rows="4"
             value={values.description}
             onChange={handleChange("description")}
             className={classes.textField}

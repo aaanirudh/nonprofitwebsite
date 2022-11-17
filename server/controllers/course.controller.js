@@ -1,10 +1,10 @@
-import Blog from "../models/blog.model";
+import Course from "../models/course.model";
 import errorHandler from "../helpers/dbErrorHandler";
 
 const isPoster = (req, res, next) => {
-  let isBlogPoster =
-    req.blog && req.auth && req.blog.postedBy._id == req.auth._id;
-  if (!isBlogPoster) {
+  let isCoursePoster =
+    req.course && req.auth && req.course.postedBy._id == req.auth._id;
+  if (!isCoursePoster) {
     return res.status("403").json({
       error: "User is not authorized",
     });
@@ -12,20 +12,22 @@ const isPoster = (req, res, next) => {
   next();
 };
 
-const blogByID = async (req, res, next, id) => {
+const courseByID = async (req, res, next, id) => {
   try {
-    let blog = await Blog.findById(id).populate("postedBy", "_id name").exec();
+    let course = await Course.findById(id)
+      .populate("postedBy", "_id name")
+      .exec();
 
-    if (!blog)
+    if (!course)
       return res.status(400).json({
-        error: "Blog post not found",
+        error: "Course post not found",
       });
 
-    req.blog = blog;
+    req.course = course;
     next();
   } catch (err) {
     return res.status(400).json({
-      error: "Could not retrieve use blog post",
+      error: "Could not retrieve use course post",
     });
   }
 };
@@ -33,9 +35,9 @@ const blogByID = async (req, res, next, id) => {
 const create = async (req, res) => {
   try {
     console.log(req.body);
-    let blog = new Blog(req.body);
-    blog["postedBy"] = req.profile;
-    let result = await blog.save();
+    let course = new Course(req.body);
+    course["postedBy"] = req.profile;
+    let result = await course.save();
 
     res.json(result);
   } catch (err) {
@@ -47,14 +49,14 @@ const create = async (req, res) => {
 
 const listByUser = async (req, res) => {
   try {
-    let blogs = await Blog.find({ postedBy: req.profile._id })
+    let courses = await Course.find({ postedBy: req.profile._id })
       .populate("comments.postedBy", "_id name")
       .populate("postedBy", "_id name")
       .populate("likes", "_id")
       .sort("-created")
       .exec();
 
-    res.json(blogs);
+    res.json(courses);
   } catch (err) {
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err),
@@ -64,14 +66,14 @@ const listByUser = async (req, res) => {
 
 const getFeed = async (req, res) => {
   try {
-    let blogs = await Blog.find()
+    let courses = await Course.find()
       .populate("comments.postedBy", "_id name")
       .populate("postedBy", "_id name")
       .populate("likes", "_id")
       .sort("-created")
       .exec();
 
-    res.json(blogs);
+    res.json(courses);
   } catch (err) {
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err),
@@ -80,10 +82,10 @@ const getFeed = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  let blog = req.blog;
+  let course = req.course;
   try {
-    let deletedBlog = await blog.remove();
-    res.json(deletedBlog);
+    let deletedCourse = await course.remove();
+    res.json(deletedCourse);
   } catch (err) {
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err),
@@ -95,8 +97,8 @@ const comment = async (req, res) => {
   let comment = req.body.comment;
   comment.postedBy = req.auth._id;
   try {
-    let result = await Blog.findByIdAndUpdate(
-      req.blog._id,
+    let result = await Course.findByIdAndUpdate(
+      req.course._id,
       { $push: { comments: comment } },
       { new: true }
     )
@@ -115,8 +117,8 @@ const comment = async (req, res) => {
 const uncomment = async (req, res) => {
   let comment = req.body.comment;
   try {
-    let result = await Blog.findByIdAndUpdate(
-      req.blog._id,
+    let result = await Course.findByIdAndUpdate(
+      req.course._id,
       { $pull: { comments: { _id: comment._id } } },
       { new: true }
     )
@@ -134,7 +136,7 @@ const uncomment = async (req, res) => {
 
 const like = async (req, res) => {
   try {
-    let result = await Blog.findByIdAndUpdate(req.blog._id, {
+    let result = await Course.findByIdAndUpdate(req.course._id, {
       $push: { likes: req.auth._id },
     });
 
@@ -148,7 +150,7 @@ const like = async (req, res) => {
 
 const unlike = async (req, res) => {
   try {
-    let result = await Blog.findByIdAndUpdate(req.blog._id, {
+    let result = await Course.findByIdAndUpdate(req.course._id, {
       $pull: { likes: req.auth._id },
     });
     res.json(result);
@@ -164,7 +166,7 @@ export default {
   like,
   unlike,
   create,
-  blogByID,
+  courseByID,
   remove,
   comment,
   uncomment,

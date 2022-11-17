@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import auth from "./../auth/auth-helper";
+import auth from "../auth/auth-helper";
 import Comments from "./Comments";
 import moment from "moment";
-import { like, unlike, remove } from "./api-blog";
+import { like, unlike, remove } from "./api-courses";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
@@ -29,31 +29,27 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 700,
     margin: "auto",
     marginBottom: theme.spacing(3),
-    backgroundColor: "rgba(0, 0, 0, 0.06)",
   },
   cardContent: {
     backgroundColor: "white",
-    padding: theme.spacing(1),
-    // paddingTop: 0,
+    padding: theme.spacing(0),
   },
   cardHeader: {
     backgroundColor: "white",
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  text: {
-    margin: theme.spacing(2),
+    paddingBottom: theme.spacing(0.5),
   },
   subtitle: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(1.5),
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5),
   },
   likeButton: {
-    margin: theme.spacing(2),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(0.5),
   },
   subtext: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(0.5),
+    marginLeft: theme.spacing(1.5),
     color: "#666666",
     fontSize: "80%",
   },
@@ -64,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 200,
+  },
+  text: {
+    marginLeft: theme.spacing(1.5),
   },
   button: {
     margin: theme.spacing(1),
@@ -76,19 +75,19 @@ const useStyles = makeStyles((theme) => ({
   },
   subtitleVals: {
     textDecoration: "none",
-    margin: theme.spacing(1),
+    margin: theme.spacing(0.5),
     marginTop: 0,
   },
 }));
 
-export default function Post(props) {
+export default function Course(props) {
   const classes = useStyles();
   const jwt = auth.isAuthenticated();
 
   const [values, setValues] = useState({
-    comments: props.blog.comments,
-    liked: props.blog.likes.some((val) => val._id == jwt.user._id),
-    numLikes: props.blog.likes.length,
+    comments: props.course.comments,
+    liked: props.course.likes.some((val) => val._id == jwt.user._id),
+    numLikes: props.course.likes.length,
     open: false,
     confirmOpen: false,
   });
@@ -97,10 +96,10 @@ export default function Post(props) {
     setValues({ ...values, comments: comments });
   };
 
-  const deletePost = () => {
+  const deleteCourse = () => {
     remove(
       {
-        postId: props.blog._id,
+        postId: props.course._id,
       },
       {
         t: jwt.token,
@@ -109,7 +108,7 @@ export default function Post(props) {
       if (data.error) {
         console.log(data.error);
       } else {
-        props.onRemove(props.blog);
+        props.onRemove(props.course);
       }
     });
     handleConfirmClose();
@@ -144,7 +143,7 @@ export default function Post(props) {
   const likeClickAction = (likeAction) => {
     likeAction(
       {
-        postId: props.blog._id,
+        postId: props.course._id,
       },
       {
         t: jwt.token,
@@ -169,17 +168,13 @@ export default function Post(props) {
       <Card className={classes.card}>
         <CardHeader
           action={
-            props.blog.postedBy._id === jwt.user._id && (
+            props.course.postedBy._id === jwt.user._id && (
               <IconButton onClick={confirmDelete}>
                 <DeleteIcon />
               </IconButton>
             )
           }
-          title={
-            <Typography variant="h4" className={classes.text}>
-              {props.blog.title}
-            </Typography>
-          }
+          title={<Typography variant="h4">{props.course.title}</Typography>}
           className={classes.cardHeader}
         />
         <CardContent className={classes.cardContent}>
@@ -194,22 +189,30 @@ export default function Post(props) {
             </Typography>
             <Avatar
               className={classes.subtitleVals}
-              src={"/api/users/photo/" + props.blog.postedBy._id}
+              src={"/api/users/photo/" + props.course.postedBy._id}
             />
             <Link
               style={{ textDecoration: "none" }}
               className={classes.subtitleVals}
-              to={"/user/" + props.blog.postedBy._id}
+              to={"/user/" + props.course.postedBy._id}
             >
-              {props.blog.postedBy.name}
+              {props.course.postedBy.name}
             </Link>
           </Grid>
+          <iframe
+            width="700"
+            height="400"
+            src={props.course.link}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
           <Typography component="p" className={classes.text}>
-            {props.blog.description}
+            {props.course.description}
           </Typography>
           <Typography component="p" className={classes.subtext}>
             {"Posted: " +
-              moment(props.blog.created).format("ddd, MMM Do YYYY, h:mm A z")}
+              moment(props.course.created).format("ddd, MMM Do YYYY, h:mm A z")}
           </Typography>
           {values.liked ? (
             <Button
@@ -240,8 +243,8 @@ export default function Post(props) {
           )}
           <Divider />
           <Comments
-            postId={props.blog._id}
-            postedbyId={props.blog.postedBy._id}
+            postId={props.course._id}
+            postedbyId={props.course.postedBy._id}
             comments={values.comments}
             updateComments={updateComments}
           />
@@ -249,7 +252,7 @@ export default function Post(props) {
       </Card>
 
       <Dialog open={values.confirmOpen} onClose={handleConfirmClose}>
-        <DialogTitle>Delete Post?</DialogTitle>
+        <DialogTitle>Delete Course?</DialogTitle>
 
         <DialogContent>
           <DialogContentText>
@@ -266,7 +269,7 @@ export default function Post(props) {
             Cancel
           </Button>
 
-          <Button color="secondary" onClick={deletePost}>
+          <Button color="secondary" onClick={deleteCourse}>
             Delete
           </Button>
         </DialogActions>

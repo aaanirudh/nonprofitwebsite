@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import auth from "./../auth/auth-helper";
-import Post from "./Post";
+import auth from "../auth/auth-helper";
+import Course from "./Course";
 import { Button, Card, Grid, Paper } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { listBlogFeed } from "./api-blog";
+import { listCourseFeed } from "./api-courses";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Blogs() {
+export default function Courses() {
   const classes = useStyles();
 
-  const [posts, setPosts] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const jwt = auth.isAuthenticated();
 
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
-    listBlogFeed(
+    listCourseFeed(
       {
         t: jwt.token,
       },
@@ -37,7 +37,7 @@ export default function Blogs() {
       if (data.error) {
         console.log(data.error);
       } else {
-        setPosts(data);
+        setCourses(data);
       }
     });
     return function cleanup() {
@@ -46,11 +46,11 @@ export default function Blogs() {
   }, []);
 
   //remove post from postings
-  const removePost = (post) => {
-    const updatedPosts = [...posts];
-    const index = updatedPosts.indexOf(post);
-    updatedPosts.splice(index, 1);
-    setPosts(updatedPosts);
+  const removeCourse = (post) => {
+    const updatedCourses = [...courses];
+    const index = updatedCourses.indexOf(post);
+    updatedCourses.splice(index, 1);
+    setCourses(updatedCourses);
   };
 
   return (
@@ -64,17 +64,17 @@ export default function Blogs() {
           >
             <Link
               style={{ textDecoration: "none", color: "inherit" }}
-              to="/createblog"
+              to="/createcourse"
             >
-              Create Blog Post
+              Create Course
             </Link>
           </Button>
         </Grid>
       )}
 
       <Grid item>
-        {posts.map((item, i) => {
-          return <Post blog={item} key={i} onRemove={removePost} />;
+        {courses.map((item, i) => {
+          return <Course course={item} key={i} onRemove={removeCourse} />;
         })}
       </Grid>
     </Grid>
