@@ -8,6 +8,7 @@ export default ({ markup, css }) => {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           >
           <title>CONSAMS</title>
+          <link rel="icon" type="image/x-icon" href="https://consams.org/wp-content/uploads/2022/05/siteicon.svg">
         </head>
         <body style="margin:0">
           <div id="root">${markup}</div>
