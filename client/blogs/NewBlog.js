@@ -99,7 +99,6 @@ export default function NewBlog() {
 
   //handle change in input
   const handleChange = (name) => (event) => {
-    console.log(event.target.value);
     setValues({ ...values, [name]: event.target.value });
   };
 
