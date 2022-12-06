@@ -8,11 +8,13 @@ import Profile from "./user/Profile";
 import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu";
 import Footer from "./core/Footer";
-import AboutUs from "./static_pages/AboutUs"
+import AboutUs from "./static_pages/AboutUs";
 import Blogs from "./blogs/Blogs";
 import NewBlog from "./blogs/NewBlog";
 import Courses from "./courses/Courses";
 import NewCourse from "./courses/NewCourse";
+import AdminRoute from "./auth/AdminRoute";
+import Applications from "./admin/Applications";
 
 /**
  * MainRouter (parent: App)
@@ -34,6 +36,7 @@ const MainRouter = () => {
         <PrivateRoute path="/courses" component={Courses} />
         <PrivateRoute path="/createblog" component={NewBlog} />
         <PrivateRoute path="/createcourse" component={NewCourse} />
+        <AdminRoute path="/applications" component={Applications} />
       </Switch>
 
       <Footer />

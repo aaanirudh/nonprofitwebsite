@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -8,7 +8,6 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuList from "@material-ui/core/MenuList";
-import { Link } from "react-router-dom";
 
 export default function MenuDropdown({ title, options }) {
   const [open, setOpen] = useState(false);
@@ -68,7 +67,7 @@ export default function MenuDropdown({ title, options }) {
                     <MenuItem onClick={handleClose}>
                       <Link
                         to={"/" + val.link}
-                        style={{ textDecoration : "none"}}
+                        style={{ textDecoration: "none" }}
                       >
                         {val.name}
                       </Link>

@@ -109,7 +109,7 @@ export default function Register() {
     };
 
     create(user).then((data) => {
-      if (data.error) {
+      if (data.error || (data && data.error === "")) {
         setValues({ ...values, error: data.error });
       } else {
         setValues({ ...values, error: "", open: true });
@@ -267,14 +267,16 @@ export default function Register() {
 
         <DialogContent>
           <DialogContentText>
-            {registerView == 2 ? "Organization created." : "Student created."}
+            {registerView == 2
+              ? "Organization created. Please wait for approval."
+              : "Student created. Please wait for approval."}
           </DialogContentText>
         </DialogContent>
 
         <DialogActions>
-          <Link style={{ textDecoration: "none" }} to="/login">
+          <Link style={{ textDecoration: "none" }} to="/">
             <Button color="primary" autoFocus="autoFocus" variant="contained">
-              Log In
+              Return Home
             </Button>
           </Link>
         </DialogActions>

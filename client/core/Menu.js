@@ -54,7 +54,7 @@ const isActive = (history, path) => {
  */
 const Menu = withRouter(function ({ history }) {
   const classes = useStyles();
-
+  console.log(auth.isAuthenticated().user);
   return (
     <AppBar color="light" position="static">
       <Toolbar color="light" className={classes.customizeToolbar}>
@@ -65,50 +65,61 @@ const Menu = withRouter(function ({ history }) {
           title="About Us"
           options={[
             {
-              name : "About CONSAMS",
-              link : "aboutus"
-            }, {
-              name : "Our History",
-              link : 'ourhistory'
-            }, {
-              name : "Leadership",
-              link : "leadership"
-            }]}
+              name: "About CONSAMS",
+              link: "aboutus",
+            },
+            {
+              name: "Our History",
+              link: "ourhistory",
+            },
+            {
+              name: "Leadership",
+              link: "leadership",
+            },
+          ]}
         />
         <MenuDropdown title="Partners" />
         <MenuDropdown
           title="Memberships"
           options={[
             {
-              name : "About Memberships",
-              link : "memberships"
+              name: "About Memberships",
+              link: "memberships",
             },
             {
-              name : "Membership Fees",
-              link : "membershipfee"
+              name: "Membership Fees",
+              link: "membershipfee",
             },
             {
-              name : "Membership Benefits",
-              link : "membershipbenefits"
-
-            }]}
+              name: "Membership Benefits",
+              link: "membershipbenefits",
+            },
+            ...(auth.isAuthenticated().user?.admin
+              ? [
+                  {
+                    name: "Applications",
+                    link: "applications",
+                  },
+                ]
+              : []),
+          ]}
         />
         <MenuDropdown
           title="Media"
           options={[
             {
-              name : "News",
-              link : "news"
+              name: "News",
+              link: "news",
             },
             {
-              name : "Photo Gallery",
-              link : "gallery"
+              name: "Photo Gallery",
+              link: "gallery",
             },
             {
-              name : "Newsletter",
-              link : "newsletter"
-
-            }]}
+              name: "Newsletter",
+              link: "newsletter",
+            },
+          ]}
         />
         <MenuDropdown
           title="Resources"

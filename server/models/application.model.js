@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import crypto from "crypto";
 
-const UserSchema = new mongoose.Schema({
+const ApplicationSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
@@ -27,16 +27,7 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  about: {
-    type: String,
-    trim: true,
-  },
-  courses: [
-    {
-      type: String,
-    },
-  ],
-  photo: {
+  schoolId: {
     data: Buffer,
     contentType: String,
   },
@@ -44,13 +35,9 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  admin: {
-    type: Boolean,
-    default: false,
-  },
 });
 
-UserSchema.virtual("password") //encrypt password
+ApplicationSchema.virtual("password") //encrypt password
   .set(function (password) {
     this._password = password;
     this.salt = this.makeSalt();
@@ -60,17 +47,17 @@ UserSchema.virtual("password") //encrypt password
     return this._password;
   });
 
-// UserSchema.path("hashed_password").validate(function (v) {
-//   //make sure password is valid
-//   if (this._password && this._password.length < 6) {
-//     this.invalidate("password", "Password must be at least 6 characters.");
-//   }
-//   if (this.isNew && !this._password) {
-//     this.invalidate("password", "Password is required");
-//   }
-// }, null);
+ApplicationSchema.path("hashed_password").validate(function (v) {
+  //make sure password is valid
+  if (this._password && this._password.length < 6) {
+    this.invalidate("password", "Password must be at least 6 characters.");
+  }
+  if (this.isNew && !this._password) {
+    this.invalidate("password", "Password is required");
+  }
+}, null);
 
-UserSchema.methods = {
+ApplicationSchema.methods = {
   authenticate: function (plainText) {
     //check password
     return this.encryptPassword(plainText) === this.hashed_password;
@@ -92,4 +79,4 @@ UserSchema.methods = {
   },
 };
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("Application", ApplicationSchema);
