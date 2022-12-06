@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.route("/").post(userCtrl.create); //handle creating new user
 
+router.route("/subscribe").put(authCtrl.requireLogin, userCtrl.subscribe);
+
 router.route("/photo/:userId").get(userCtrl.photo, userCtrl.defaultPhoto); //access a user's profile photo or default if they don't have one
 
 router.route("/defaultphoto").get(userCtrl.defaultPhoto); //get default photo for user profile

@@ -192,6 +192,21 @@ const getOrganizations = async (req, res) => {
   }
 };
 
+const subscribe = async (req, res) => {
+  try {
+    let user = req.profile;
+    user.donor = true;
+    await user.save();
+    res.status(200).json({
+      message: "Subscription successful",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
 export default {
   create,
   userByID,
@@ -200,5 +215,6 @@ export default {
   defaultPhoto,
   remove,
   update,
+  subscribe,
   getOrganizations,
 };
