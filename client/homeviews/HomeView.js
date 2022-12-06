@@ -1,5 +1,5 @@
 import React from "react";
-import doctorImage from "./../assets/images/doctors.png";
+import doctorImage from "./../assets/images/taleni.png";
 import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,8 +64,8 @@ export default function HomeView() {
         <Container
           className={classes.titleImage}
           direction="column"
-          alignItems="center"
-          justifyContent="center"
+          alignitems="center"
+          justifycontent="center"
           maxWidth="lg"
         >
           <Typography component="h1" variant="h2" gutterBottom>
@@ -75,8 +75,8 @@ export default function HomeView() {
           </Typography>
 
           <Typography variant="h5" paragraph>
-            Serving new medical and health professionals' schools in the
-            Sub-Saharan Community.
+            <strong>Serving new medical and health professionals' schools in the
+            Sub-Saharan Community.</strong>
           </Typography>
 
           <Grid item>

@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import { Link } from 'react-router-dom';
+
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -26,7 +28,7 @@ export default function MenuDropdown({ title, options }) {
       <Button
         style={{
           float: "left",
-          flexGrow: 1,
+          flexGrow: "1",
           textTransform: "none",
           minWidth: "10vw",
         }}
@@ -63,12 +65,12 @@ export default function MenuDropdown({ title, options }) {
                   // onKeyDown={handleListKeyDown}
                 >
                   {options?.map((val) => (
-                    <MenuItem onClick={() => console.log(val)}>
+                    <MenuItem onClick={handleClose}>
                       <Link
-                        to={"/" + val.toLowerCase()}
-                        style={{ textDecoration: "none" }}
+                        to={"/" + val.link}
+                        style={{ textDecoration : "none"}}
                       >
-                        {val}
+                        {val.name}
                       </Link>
                     </MenuItem>
                   ))}
