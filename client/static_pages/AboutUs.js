@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   aboutus_content : {
     paddingLeft : '200px',
     paddingRight : '200px',
-    paddingTop : '100px',
+    paddingTop : '60px',
     paddingBottom : '100px',
     boxShadow : "0px -5px 10px grey"
   }
