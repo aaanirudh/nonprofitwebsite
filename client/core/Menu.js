@@ -56,7 +56,7 @@ const Menu = withRouter(function ({ history }) {
   const classes = useStyles();
 
   return (
-    <AppBar color="light" position="static">
+    <AppBar color="default" position="static">
       <Toolbar color="light" className={classes.customizeToolbar}>
         <Link className={classes.title} to="/">
           <img src={CONSAMSLogo} alt="logo" width="150px" />

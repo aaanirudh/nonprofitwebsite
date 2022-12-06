@@ -8,7 +8,8 @@ import Profile from "./user/Profile";
 import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu";
 import Footer from "./core/Footer";
-import AboutUs from "./static_pages/AboutUs"
+import AboutUs from "./static_pages/AboutUs";
+import Leadership from "./static_pages/Leadership";
 import Blogs from "./blogs/Blogs";
 import NewBlog from "./blogs/NewBlog";
 import Courses from "./courses/Courses";
@@ -30,6 +31,7 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile} />
         <Route path="/user/:userId" component={Profile} />
         <Route path="/aboutus" component={AboutUs} />
+        <Route path="/leadership" component={Leadership} />
         <PrivateRoute path="/blogs" component={Blogs} />
         <PrivateRoute path="/courses" component={Courses} />
         <PrivateRoute path="/createblog" component={NewBlog} />
