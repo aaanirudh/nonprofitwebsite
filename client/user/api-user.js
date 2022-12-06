@@ -96,4 +96,20 @@ const remove = async (params, credentials) => {
   }
 };
 
-export { create, read, update, remove };
+const getOrganizations = async (signal) => {
+  try {
+    let response = await fetch("/api/users/organizations", {
+      method: "GET",
+      signal: signal,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { create, read, update, remove, getOrganizations };

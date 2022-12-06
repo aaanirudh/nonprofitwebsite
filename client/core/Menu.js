@@ -5,9 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import Avatar from "@material-ui/core/Avatar";
 import CONSAMSLogo from "./../assets/images/logo.svg";
 import MenuDropdown from "./MenuDropdown";
@@ -124,7 +122,7 @@ const Menu = withRouter(function ({ history }) {
           // ]}
         />
 
-        {!auth.isAuthenticated() && (
+        {!auth.isAuthenticated() ? (
           <span>
             <Link style={{ textDecoration: "none" }} to="/login">
               <Button variant="contained" className={classes.menuButton}>
@@ -137,10 +135,12 @@ const Menu = withRouter(function ({ history }) {
               </Button>
             </Link>
           </span>
-        )}
-        {auth.isAuthenticated() && (
+        ) : (
           <span>
-            <Link to={"/user/" + auth.isAuthenticated().user._id}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={"/user/" + auth.isAuthenticated().user._id}
+            >
               <Button
                 className={classes.menu}
                 style={isActive(

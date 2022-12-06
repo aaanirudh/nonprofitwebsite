@@ -10,6 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
  */
 export default function Home({ history }) {
   const [defaultPage, setDefaultPage] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   //Check if user is authenticated
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function Home({ history }) {
     const unlisten = history.listen(() => {
       setDefaultPage(auth.isAuthenticated());
     });
+    setLoaded(true);
 
     return () => {
       unlisten();
@@ -25,17 +27,7 @@ export default function Home({ history }) {
   return (
     <div>
       <CssBaseline />
-      {defaultPage ? (
-        <span>
-          {auth.isAuthenticated().user.organization ? (
-            <OrganizationView />
-          ) : (
-            <StudentView />
-          )}
-        </span>
-      ) : (
-        <HomeView />
-      )}
+      <HomeView />
     </div>
   );
 }

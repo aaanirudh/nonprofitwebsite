@@ -107,12 +107,15 @@ export default function Profile({ match }) {
                 (values.user.organization ? "Organization" : "Student") +
                 ")"
               }
-              secondary={values.user.location}
+              secondary={values.user.organizationName}
             />{" "}
             {auth.isAuthenticated().user &&
               auth.isAuthenticated().user._id == values.user._id && (
                 <ListItemSecondaryAction>
-                  <Link to={"/user/edit/" + values.user._id}>
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={"/user/edit/" + values.user._id}
+                  >
                     <IconButton aria-label="Edit" color="primary">
                       <Edit />
                     </IconButton>
