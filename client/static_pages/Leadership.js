@@ -42,7 +42,7 @@ const Leadership = withRouter(function () {
 
   return (
     <div className={classes.leadership_container}>
-      <div className={classes.top_photo} />
+      <div className={classes.top_photo} style={{ zIndex: -1 }} />
       <div style={{ backgroundColor: "white" }}>
         <div className={classes.leadership_content}>
           <Typography variant="h3" style={{ marginBottom: "15px" }}>
