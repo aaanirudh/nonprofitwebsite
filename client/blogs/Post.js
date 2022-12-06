@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Post(props) {
   const classes = useStyles();
   const jwt = auth.isAuthenticated();
-  console.log(props.blog.likes, jwt.user._id);
   const [values, setValues] = useState({
     comments: props.blog.comments,
     liked: props.blog.likes.some((val) => val && val._id == jwt.user._id),

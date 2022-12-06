@@ -90,7 +90,6 @@ export default function Register() {
 
   //handle change to update input
   const handleChange = (name) => (event) => {
-    console.log(name, event.target.value);
     setValues({ ...values, [name]: event.target.value });
   };
 
@@ -109,7 +108,7 @@ export default function Register() {
     };
 
     create(user).then((data) => {
-      if (data.error) {
+      if (data.error || (data && data.error === "")) {
         setValues({ ...values, error: data.error });
       } else {
         setValues({ ...values, error: "", open: true });
@@ -127,7 +126,6 @@ export default function Register() {
           setValues({ ...values, error: data.error });
         } else {
           setValues({ ...values, organizations: data });
-          console.log(data);
         }
       });
     }
@@ -168,7 +166,6 @@ export default function Register() {
                         onChange={handleChange("organizationName")}
                       >
                         {values.organizations.map((val) => {
-                          console.log(val);
                           return <MenuItem value={val}>{val}</MenuItem>;
                         })}
                       </Select>
@@ -267,14 +264,16 @@ export default function Register() {
 
         <DialogContent>
           <DialogContentText>
-            {registerView == 2 ? "Organization created." : "Student created."}
+            {registerView == 2
+              ? "Organization created. Please wait for approval."
+              : "Student created. Please wait for approval."}
           </DialogContentText>
         </DialogContent>
 
         <DialogActions>
-          <Link style={{ textDecoration: "none" }} to="/login">
+          <Link style={{ textDecoration: "none" }} to="/">
             <Button color="primary" autoFocus="autoFocus" variant="contained">
-              Log In
+              Return Home
             </Button>
           </Link>
         </DialogActions>

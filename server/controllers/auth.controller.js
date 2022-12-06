@@ -41,7 +41,14 @@ const login = async (req, res) => {
     res.cookie("t", token, {
       expire: new Date() + 9999,
     });
-
+    console.log(user, user.organizationName);
+    console.log("bruh", {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      organization: user.organization,
+      ...(user.admin && { admin: user.admin }),
+    });
     //Return token and user info
     return res.status(200).json({
       token,
@@ -50,6 +57,7 @@ const login = async (req, res) => {
         name: user.name,
         email: user.email,
         organization: user.organization,
+        ...(user.admin && { admin: user.admin }),
       },
     });
   } catch (err) {

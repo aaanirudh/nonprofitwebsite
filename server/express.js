@@ -10,6 +10,7 @@ import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 import blogRoutes from "./routes/blog.routes";
 import courseRoutes from "./routes/course.routes";
+import applicationRoutes from "./routes/application.routes";
 
 // modules for server side rendering
 import React from "react";
@@ -44,6 +45,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/course", courseRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/application", applicationRoutes);
 
 //Create structure with server-side rendering
 app.get("*", (req, res) => {

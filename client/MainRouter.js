@@ -14,6 +14,8 @@ import Blogs from "./blogs/Blogs";
 import NewBlog from "./blogs/NewBlog";
 import Courses from "./courses/Courses";
 import NewCourse from "./courses/NewCourse";
+import AdminRoute from "./auth/AdminRoute";
+import Applications from "./admin/Applications";
 
 /**
  * MainRouter (parent: App)
@@ -36,6 +38,7 @@ const MainRouter = () => {
         <PrivateRoute path="/courses" component={Courses} />
         <PrivateRoute path="/createblog" component={NewBlog} />
         <PrivateRoute path="/createcourse" component={NewCourse} />
+        <AdminRoute path="/applications" component={Applications} />
       </Switch>
 
       <Footer />

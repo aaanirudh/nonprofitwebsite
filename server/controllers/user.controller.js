@@ -5,6 +5,7 @@ import errorHandler from "./../helpers/dbErrorHandler";
 import formidable from "formidable";
 import fs from "fs";
 import profileImage from "./../../client/assets/images/profile-pic.png";
+import Application from "../models/application.model";
 
 /**
  * Access profile photo of user if exists
@@ -35,17 +36,13 @@ const defaultPhoto = (req, res) => {
  * @param  {Object} res - object to be populated with status and returned
  */
 const create = async (req, res) => {
-  const user = new User(req.body);
+  console.log(req.body);
 
   try {
+    const application = new Application(req.body);
     //save new user that has been created
-    await user.save();
-    let findOrg = await Organization.findOne({
-      name: req.body.organizationName,
-    });
-    if (!findOrg) {
-      await Organization.create({ name: req.body.organizationName });
-    }
+    await application.save();
+    console.log("homie");
     return res.status(200).json({
       message: "Successfully registered",
     });
@@ -55,6 +52,26 @@ const create = async (req, res) => {
       error: errorHandler.getErrorMessage(err),
     });
   }
+  // const user = new User(req.body);
+
+  // try {
+  //   //save new user that has been created
+  //   await user.save();
+  //   let findOrg = await Organization.findOne({
+  //     name: req.body.organizationName,
+  //   });
+  //   if (!findOrg) {
+  //     await Organization.create({ name: req.body.organizationName });
+  //   }
+  //   return res.status(200).json({
+  //     message: "Successfully registered",
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  //   return res.status(400).json({
+  //     error: errorHandler.getErrorMessage(err),
+  //   });
+  // }
 };
 
 /**
