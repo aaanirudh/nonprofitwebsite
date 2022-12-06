@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import auth from "./../auth/auth-helper";
 // import Post from "./Post";
-import { Button, Card, Grid, Paper } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { getApplications, approve, deny } from "./api-admin";

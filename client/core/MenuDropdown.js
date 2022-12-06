@@ -60,7 +60,6 @@ export default function MenuDropdown({ title, options }) {
                   autoFocusItem={open}
                   id="composition-menu"
                   aria-labelledby="composition-button"
-                  // onKeyDown={handleListKeyDown}
                 >
                   {options?.map((val) => (
                     <MenuItem onClick={handleClose}>

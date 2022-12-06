@@ -34,7 +34,6 @@ const courseByID = async (req, res, next, id) => {
 
 const create = async (req, res) => {
   try {
-    console.log(req.body);
     let course = new Course(req.body);
     course["postedBy"] = req.profile;
     let result = await course.save();

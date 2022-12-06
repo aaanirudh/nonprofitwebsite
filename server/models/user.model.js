@@ -48,6 +48,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  donor: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 UserSchema.virtual("password") //encrypt password
