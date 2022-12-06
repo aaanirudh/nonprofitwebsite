@@ -11,7 +11,7 @@ import Quentin from './Exec_Grids/Quentin';
 import Penniecook from './Exec_Grids/Penniecook';
 import Christians from './Exec_Grids/Christians';
 import Saka from './Exec_Grids/Saka';
-import Maciel from './Exec_Grids/maciel';
+import Maciel from './Exec_Grids/Maciel';
 import Falayi from './Exec_Grids/Falayi';
 import Kamya from './Exec_Grids/Kamya';
 import Kafwamfwa from './Exec_Grids/Kafwamfwa';
