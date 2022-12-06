@@ -90,7 +90,6 @@ export default function Register() {
 
   //handle change to update input
   const handleChange = (name) => (event) => {
-    console.log(name, event.target.value);
     setValues({ ...values, [name]: event.target.value });
   };
 
@@ -127,7 +126,6 @@ export default function Register() {
           setValues({ ...values, error: data.error });
         } else {
           setValues({ ...values, organizations: data });
-          console.log(data);
         }
       });
     }
@@ -168,7 +166,6 @@ export default function Register() {
                         onChange={handleChange("organizationName")}
                       >
                         {values.organizations.map((val) => {
-                          console.log(val);
                           return <MenuItem value={val}>{val}</MenuItem>;
                         })}
                       </Select>
