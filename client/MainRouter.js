@@ -8,6 +8,8 @@ import Profile from "./user/Profile";
 import PrivateRoute from "./auth/PrivateRoute";
 import Menu from "./core/Menu";
 import Blogs from "./resources/Blogs";
+import Footer from "./core/Footer";
+import AboutUs from "./static_pages/AboutUs"
 
 /**
  * MainRouter (parent: App)
@@ -25,7 +27,10 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile} />
         <Route path="/user/:userId" component={Profile} />
         <Route path="/resources/blogs" component={Blogs} />
+        <Route path="/aboutus" component={AboutUs} />
       </Switch>
+
+      <Footer />
     </div>
   );
 };
