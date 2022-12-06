@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: theme.spacing(5),
     paddingBottom: theme.spacing(2),
+    marginBottom : "50px"
   },
   error: {
     verticalAlign: "middle",

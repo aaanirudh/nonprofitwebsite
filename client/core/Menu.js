@@ -90,10 +90,6 @@ const Menu = withRouter(function ({ history }) {
               name: "Membership Fees",
               link: "membershipfee",
             },
-            {
-              name: "Membership Benefits",
-              link: "membershipbenefits",
-            },
             ...(auth.isAuthenticated().user?.admin
               ? [
                   {

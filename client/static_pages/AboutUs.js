@@ -18,13 +18,13 @@ const useStyles = makeStyles({
     backgroundImage: `url(${background300})`,
     opacity: 0.8,
   },
-  aboutus_content: {
-    paddingLeft: "200px",
-    paddingRight: "200px",
-    paddingTop: "100px",
-    paddingBottom: "100px",
-    boxShadow: "0px -5px 10px grey",
-  },
+  aboutus_content : {
+    paddingLeft : '200px',
+    paddingRight : '200px',
+    paddingTop : '60px',
+    paddingBottom : '100px',
+    boxShadow : "0px -5px 10px grey"
+  }
 });
 
 const AboutUs = withRouter(function () {

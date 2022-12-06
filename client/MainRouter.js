@@ -10,6 +10,8 @@ import Menu from "./core/Menu";
 import Footer from "./core/Footer";
 import AboutUs from "./static_pages/AboutUs";
 import Leadership from "./static_pages/Leadership";
+import Memberships from "./membership/Memberships";
+import MembershipFee from "./membership/MembershipFee";
 import Blogs from "./blogs/Blogs";
 import NewBlog from "./blogs/NewBlog";
 import Courses from "./courses/Courses";
@@ -55,6 +57,8 @@ const MainRouter = () => {
           <Route path="/user/:userId" component={Profile} />
           <Route path="/aboutus" component={AboutUs} />
           <Route path="/leadership" component={Leadership} />
+          <Route path="/memberships" component={Memberships} />
+          <Route path="/membershipfee" component={MembershipFee} />
           <PrivateRoute path="/blogs" component={Blogs} />
           <PrivateRoute path="/courses" component={Courses} />
           <PrivateRoute path="/createblog" component={NewBlog} />
