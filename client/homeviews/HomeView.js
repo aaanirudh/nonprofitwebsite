@@ -63,8 +63,8 @@ export default function HomeView() {
         <Container
           className={classes.titleImage}
           direction="column"
-          alignItems="center"
-          justifyContent="center"
+          alignitems="center"
+          justifycontent="center"
           maxWidth="lg"
         >
           <Typography component="h1" variant="h2" gutterBottom>

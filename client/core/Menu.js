@@ -65,27 +65,63 @@ const Menu = withRouter(function ({ history }) {
         </Link>
         <MenuDropdown
           title="About Us"
-          options={["About CONSAMS", "Our History", "Leadership"]}
+          options={[
+            {
+              name : "About CONSAMS",
+              link : "aboutus"
+            }, {
+              name : "Our History",
+              link : 'ourhistory'
+            }, {
+              name : "Leadership",
+              link : "leadership"
+            }]}
         />
         <MenuDropdown title="Partners" />
         <MenuDropdown
           title="Memberships"
-          options={["About Memberships", "Membership Fees", "Benefits"]}
+          options={[
+            {
+              name : "About Memberships",
+              link : "memberships"
+            },
+            {
+              name : "Membership Fees",
+              link : "membershipfee"
+            },
+            {
+              name : "Membership Benefits",
+              link : "membershipbenefits"
+
+            }]}
         />
         <MenuDropdown
           title="Media"
-          options={["News", "Photo Gallery", "Newsletter"]}
+          options={[
+            {
+              name : "News",
+              link : "news"
+            },
+            {
+              name : "Photo Gallery",
+              link : "gallery"
+            },
+            {
+              name : "Newsletter",
+              link : "newsletter"
+
+            }]}
         />
         <MenuDropdown
           title="Resources"
-          options={[
-            "Courses",
-            "Blogs",
-            "Publications",
-            "Books",
-            "Podcasts",
-            "Videos/Films",
-          ]}
+          // options={[
+          //   "Courses",
+          //   "Blogs",
+          //   "Publications",
+          //   "Books",
+          //   "Podcasts",
+          //   "Videos/Films",
+          // ]}
         />
 
         {!auth.isAuthenticated() && (
