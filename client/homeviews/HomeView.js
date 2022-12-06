@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import doctorImage from "./../assets/images/taleni.png";
+import background489 from "./../assets/images/background-489px.png";
+import { Link } from "react-router-dom";
 import auth from "../auth/auth-helper";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
 
-    backgroundImage: `url(${doctorImage})`,
+    backgroundImage: `url(${background489})`,
     padding: theme.spacing(18, 0, 12),
   },
   heroButtons: {
@@ -54,6 +55,12 @@ const useStyles = makeStyles((theme) => ({
   payPalButton: {
     textTransform: "none",
     backgroundColor: "#ffcc00",
+  },
+  title_shadow: {
+    textShadow: "1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff",
+  },
+  subtitle_shadow: {
+    textShadow: "0.7px 0 #fff, -0.7px 0 #fff, 0 0.7px #fff, 0 -0.7px #fff",
   },
 }));
 /**
@@ -114,13 +121,22 @@ export default function HomeView() {
           justifycontent="center"
           maxWidth="lg"
         >
-          <Typography component="h1" variant="h2" gutterBottom>
+          <Typography
+            component="h1"
+            variant="h2"
+            gutterBottom
+            className={classes.title_shadow}
+          >
             <strong>
               Consortium of New Sub-Sahara African Medical Schools
             </strong>
           </Typography>
 
-          <Typography variant="h5" paragraph>
+          <Typography
+            variant="h5"
+            paragraph
+            className={classes.subtitle_shadow}
+          >
             <strong>
               Serving new medical and health professionals' schools in the
               Sub-Saharan Community.

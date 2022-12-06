@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Application(props) {
   const classes = useStyles();
   const jwt = auth.isAuthenticated();
-  console.log(props);
   const approve = () => {
     props.onApprove(props.app);
   };

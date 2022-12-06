@@ -36,10 +36,23 @@ const defaultPhoto = (req, res) => {
  * @param  {Object} res - object to be populated with status and returned
  */
 const create = async (req, res) => {
-  console.log(req.body);
-
+  let temp = req.body;
   try {
-    const application = new Application(req.body);
+    console.log("bruh", temp);
+    if (!temp.organization) {
+      const org = await Organization.findOne({
+        code: parseInt(temp.organizationName),
+      });
+
+      if (!org) {
+        return res.status(400).json({
+          error: "Invalid Organization Code",
+        });
+      }
+      console.log(org);
+      temp.organizationName = org.name;
+    }
+    const application = new Application(temp);
     //save new user that has been created
     await application.save();
     console.log("homie");
@@ -111,10 +124,16 @@ const userByID = async (req, res, next, id) => {
  * @param  {Object} req - profile : user profile that is requested
  * @param  {Object} res - object to be populated with status and profile and returned
  */
-const read = (req, res) => {
+const read = async (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
-  return res.status(200).json(req.profile);
+  let temp = req.profile;
+  if (temp.organization) {
+    const orgName = await Organization.findOne({ name: temp.organizationName });
+    temp.organizationName = `${temp.organizationName} (${orgName?.code})`;
+  }
+  console.log(req.profile);
+  return res.status(200).json(temp);
 };
 
 /**

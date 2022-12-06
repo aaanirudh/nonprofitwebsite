@@ -117,18 +117,6 @@ export default function Register() {
   };
 
   const changeView = async (value) => {
-    if (value == 1) {
-      const abortController = new AbortController();
-      const signal = abortController.signal;
-
-      await getOrganizations(signal).then((data) => {
-        if (data && data.error) {
-          setValues({ ...values, error: data.error });
-        } else {
-          setValues({ ...values, organizations: data });
-        }
-      });
-    }
     setRegisterView(value);
   };
 
@@ -152,34 +140,19 @@ export default function Register() {
                     margin="normal"
                   />
                   <br />
-                  {registerView == 1 ? (
-                    <FormControl>
-                      <InputLabel id="demo-simple-select-label">
-                        Organization
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={values.organizationName}
-                        label="Organization"
-                        className={classes.textField}
-                        onChange={handleChange("organizationName")}
-                      >
-                        {values.organizations.map((val) => {
-                          return <MenuItem value={val}>{val}</MenuItem>;
-                        })}
-                      </Select>
-                    </FormControl>
-                  ) : (
-                    <TextField
-                      id="organizationName"
-                      label={"Organization"}
-                      className={classes.textField}
-                      value={values.organizationName}
-                      onChange={handleChange("organizationName")}
-                      margin="normal"
-                    />
-                  )}
+                  <TextField
+                    id="organizationName"
+                    type={registerView == 1 ? "number" : ""}
+                    label={
+                      registerView == 1
+                        ? "6-Digit Organization Code"
+                        : "Organization"
+                    }
+                    className={classes.textField}
+                    value={values.organizationName}
+                    onChange={handleChange("organizationName")}
+                    margin="normal"
+                  />
                 </Grid>
                 <Grid item xs={6}>
                   <TextField

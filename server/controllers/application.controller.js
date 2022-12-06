@@ -36,17 +36,24 @@ const defaultPhoto = (req, res) => {
  * @param  {Object} res - object to be populated with status and returned
  */
 const create = async (req, res) => {
-  const application = new Application(req.body);
-
   try {
+    if (!req.body.organization) {
+      const org = await Organization.findOne({
+        code: parseInt(req.body.organizationName),
+      });
+
+      if (!org) {
+        return res.status(400).json({
+          error: "Invalid Organization Code",
+        });
+      }
+      console.log(org);
+      req.body.organizationName = org.name;
+    }
+    console.log(req.body);
+    const application = new Application(req.body);
     //save new application that has been created
     await application.save();
-    let findOrg = await Organization.findOne({
-      name: req.body.organizationName,
-    });
-    if (!findOrg) {
-      await Organization.create({ name: req.body.organizationName });
-    }
     return res.status(200).json({
       message: "Successfully registered",
     });
