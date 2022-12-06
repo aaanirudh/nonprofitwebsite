@@ -123,14 +123,16 @@ const Menu = withRouter(function ({ history }) {
         />
         <MenuDropdown
           title="Resources"
-          // options={[
-          //   "Courses",
-          //   "Blogs",
-          //   "Publications",
-          //   "Books",
-          //   "Podcasts",
-          //   "Videos/Films",
-          // ]}
+          options={[
+            {
+              name: "Courses",
+              link: "courses",
+            },
+            {
+              name: "Blogs",
+              link: "blogs",
+            },
+          ]}
         />
 
         {!auth.isAuthenticated() ? (

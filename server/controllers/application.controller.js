@@ -47,10 +47,8 @@ const create = async (req, res) => {
           error: "Invalid Organization Code",
         });
       }
-      console.log(org);
       req.body.organizationName = org.name;
     }
-    console.log(req.body);
     const application = new Application(req.body);
     //save new application that has been created
     await application.save();

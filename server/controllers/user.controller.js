@@ -38,7 +38,6 @@ const defaultPhoto = (req, res) => {
 const create = async (req, res) => {
   let temp = req.body;
   try {
-    console.log("bruh", temp);
     if (!temp.organization) {
       const org = await Organization.findOne({
         code: parseInt(temp.organizationName),
@@ -49,13 +48,11 @@ const create = async (req, res) => {
           error: "Invalid Organization Code",
         });
       }
-      console.log(org);
       temp.organizationName = org.name;
     }
     const application = new Application(temp);
     //save new user that has been created
     await application.save();
-    console.log("homie");
     return res.status(200).json({
       message: "Successfully registered",
     });
@@ -132,7 +129,6 @@ const read = async (req, res) => {
     const orgName = await Organization.findOne({ name: temp.organizationName });
     temp.organizationName = `${temp.organizationName} (${orgName?.code})`;
   }
-  console.log(req.profile);
   return res.status(200).json(temp);
 };
 
