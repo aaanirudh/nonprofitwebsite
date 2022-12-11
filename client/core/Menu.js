@@ -93,8 +93,12 @@ const Menu = withRouter(function ({ history }) {
             ...(auth.isAuthenticated().user?.admin
               ? [
                   {
-                    name: "Applications",
+                    name: "Manage Applications",
                     link: "applications",
+                  },
+                  {
+                    name: "Manage Members",
+                    link: "usermanagement",
                   },
                 ]
               : []),

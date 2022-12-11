@@ -19,6 +19,7 @@ import NewCourse from "./courses/NewCourse";
 import AdminRoute from "./auth/AdminRoute";
 import Applications from "./admin/Applications";
 import { makeStyles } from "@material-ui/core/styles";
+import UserManagement from "./admin/UserManagement";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -57,6 +58,7 @@ const MainRouter = () => {
           <PrivateRoute path="/createblog" component={NewBlog} />
           <PrivateRoute path="/createcourse" component={NewCourse} />
           <AdminRoute path="/applications" component={Applications} />
+          <AdminRoute path="/usermanagement" component={UserManagement} />
         </Switch>
       </div>
       <Footer />

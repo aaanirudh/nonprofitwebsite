@@ -1,34 +1,7 @@
 import Application from "../models/application.model";
 import Organization from "../models/organization.model";
 import User from "../models/user.model";
-import extend from "lodash/extend";
 import errorHandler from "./../helpers/dbErrorHandler";
-import formidable from "formidable";
-import fs from "fs";
-import profileImage from "./../../client/assets/images/profile-pic.png";
-
-/**
- * Access profile photo of application if exists
- * @param  {Object} req - profile : application profile
- * @param  {Object} res - object to be populated with profile photo of application
- * @param  {function} next - call next function in route
- */
-const photo = (req, res, next) => {
-  if (req.profile.photo.data) {
-    res.set("Content-Type", req.profile.photo.contentType);
-    return res.send(req.profile.photo.data);
-  }
-  next();
-};
-
-/**
- * Access default photo
- * @param  {Object} req - unused
- * @param  {Object} res - object to be populated with default profile image
- */
-const defaultPhoto = (req, res) => {
-  return res.sendFile(process.cwd() + profileImage);
-};
 
 /**
  * Create new application (create in api-application)
@@ -134,10 +107,42 @@ const appByID = async (req, res, next, id) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    let user = req.profile;
+
+    //delete user
+    let deletedUser = await user.remove();
+
+    deletedUser.hashed_password = undefined;
+    deletedUser.salt = undefined;
+
+    res.status(200).json(deletedUser);
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
+const getUsers = async (req, res) => {
+  try {
+    let users = await User.find().select("-hashed_password -salt");
+
+    res.status(200).json(users);
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
 export default {
   create,
   getApplications,
   approve,
   deny,
   appByID,
+  deleteUser,
+  getUsers,
 };

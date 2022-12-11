@@ -22,6 +22,39 @@ const getApplications = async (credentials, signal) => {
   }
 };
 
+const getUsers = async (credentials, signal) => {
+  try {
+    let response = await fetch("/api/application/users", {
+      method: "GET",
+      signal: signal,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + credentials.t,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteUser = async (params, credentials) => {
+  try {
+    let response = await fetch("/api/application/deleteUser/" + params.id, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + credentials.t,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const approve = async (params, credentials) => {
   try {
     let response = await fetch("/api/application/approve/" + params.id, {
@@ -54,4 +87,4 @@ const deny = async (params, credentials) => {
   }
 };
 
-export { getApplications, approve, deny };
+export { getApplications, getUsers, deleteUser, approve, deny };
