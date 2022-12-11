@@ -27,15 +27,15 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contentWrap: {
-    paddingBottom: "2.5rem" /* Footer height */,
+    paddingBottom: "17.4rem",
   },
 
-  footer: {
-    position: "absolute",
-    bottom: "0",
-    width: "100%",
-    height: "2.5rem" /* Footer height */,
-  },
+  // footer: {
+  //   // position: "absolute",
+  //   // bottom: "0",
+  //   // width: "100%",
+  //   // height: "2.5rem",
+  // },
 }));
 /**
  * MainRouter (parent: App)
@@ -65,9 +65,8 @@ const MainRouter = () => {
           <PrivateRoute path="/createcourse" component={NewCourse} />
           <AdminRoute path="/applications" component={Applications} />
         </Switch>
-
-        <Footer className={classes.footer} />
       </div>
+      <Footer />
     </div>
   );
 };
