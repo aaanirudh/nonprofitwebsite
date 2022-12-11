@@ -27,15 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contentWrap: {
-    paddingBottom: "17.4rem",
+    minHeight: "calc(100vh - 278px)",
   },
-
-  // footer: {
-  //   // position: "absolute",
-  //   // bottom: "0",
-  //   // width: "100%",
-  //   // height: "2.5rem",
-  // },
 }));
 /**
  * MainRouter (parent: App)

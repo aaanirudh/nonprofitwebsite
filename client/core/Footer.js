@@ -14,12 +14,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "30px",
     backgroundColor: "#97B6E4",
     display: "flex",
-    // position: "fixed",
-    // bottom: "0",
     position: "absolute",
-    bottom: "0",
     width: "100%",
-    height: "17.4rem",
     flexDirection: "column",
   },
   copyright: {
