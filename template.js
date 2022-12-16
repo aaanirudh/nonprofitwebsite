@@ -7,7 +7,7 @@ export default ({ markup, css }) => {
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           >
-          <title>CONSAMS</title>
+          <title>CONSAMS - Consortium of New Sub-Sahara African Medical Schools</title>
           <link rel="icon" type="image/x-icon" href="https://consams.org/wp-content/uploads/2022/05/siteicon.svg">
         </head>
         <body style="margin:0">

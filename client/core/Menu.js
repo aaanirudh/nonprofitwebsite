@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   customizeToolbar: {
-    minHeight: 100,
+    minHeight: 110,
+    fontSize: "1.2rem",
   },
   smallAvatar: {
     width: 25,
@@ -59,7 +60,7 @@ const Menu = withRouter(function ({ history }) {
     <AppBar color="default" position="static">
       <Toolbar color="light" className={classes.customizeToolbar}>
         <Link className={classes.title} to="/">
-          <img src={CONSAMSLogo} alt="logo" width="150px" />
+          <img src={CONSAMSLogo} alt="logo" width="225px" />
         </Link>
         <MenuDropdown
           title="About Us"

@@ -57,8 +57,8 @@ const Footer = withRouter(function ({ history }) {
     <div className={classes.footer_container}>
       <div className={classes.info_container}>
         <div className={classes.about_us}>
-          <Typography variant="h6" style={{ color: "white" }}>
-            About Us
+          <Typography variant="h6" style={{ color: "#16306d" }}>
+            <strong>About Us</strong>
           </Typography>
           <Divider style={{ marginTop: "5px", marginBottom: "20px" }} />
 
@@ -76,30 +76,36 @@ const Footer = withRouter(function ({ history }) {
         </div>
 
         <div className={classes.memberships}>
-          <Typography variant="h6" style={{ color: "white" }}>
-            Memberships
+          <Typography variant="h6" style={{ color: "#16306d" }}>
+            <strong>Memberships</strong>
           </Typography>
           <Divider style={{ marginTop: "5px", marginBottom: "20px" }} />
 
           <Link style={{ flex: "1" }}>
             <ArrowForwardIosIcon />
-            <Typography variant="button">About Memberships</Typography>
+            <Typography variant="button" style={{ textDecoration: "none" }}>
+              About Memberships
+            </Typography>
           </Link>
           <br />
           <Link style={{ flex: "1" }}>
             <ArrowForwardIosIcon />
-            <Typography variant="button">Membership Fees</Typography>
+            <Typography variant="button" style={{ textDecoration: "none" }}>
+              Membership Fees
+            </Typography>
           </Link>
           <br />
           <Link style={{ flex: "1" }}>
             <ArrowForwardIosIcon />
-            <Typography variant="button">Benefits</Typography>
+            <Typography variant="button" style={{ textDecoration: "none" }}>
+              Benefits
+            </Typography>
           </Link>
         </div>
 
         <div className={classes.contact_us}>
-          <Typography variant="h6" style={{ color: "white" }}>
-            Contact Us
+          <Typography variant="h6" style={{ color: "#16306d" }}>
+            <strong>Contact Us</strong>
           </Typography>
           <Divider style={{ marginTop: "5px", marginBottom: "20px" }} />
 

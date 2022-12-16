@@ -11,11 +11,14 @@ import Container from "@material-ui/core/Container";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaypal } from "@fortawesome/free-brands-svg-icons";
-import { Paper } from "@material-ui/core";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { Box, List, ListItem, ListItemText, Paper } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import DialogContent from "@material-ui/core/DialogContent";
 import { subscribe } from "./api-home.js";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -29,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
 
     backgroundImage: `url(${background489})`,
-    padding: theme.spacing(18, 0, 12),
+    backgroundColor: "rgba(0, 0, 0, 1.2)",
+    padding: theme.spacing(25, 0, 20),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -42,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
   titleImage: {
     textAlign: "center",
-    color: "black",
+    // color: "black",
+    color: "white",
   },
   featuredNewsTitle: {
     color: "black",
@@ -55,12 +60,7 @@ const useStyles = makeStyles((theme) => ({
   payPalButton: {
     textTransform: "none",
     backgroundColor: "#ffcc00",
-  },
-  title_shadow: {
-    textShadow: "1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff",
-  },
-  subtitle_shadow: {
-    textShadow: "0.7px 0 #fff, -0.7px 0 #fff, 0 0.7px #fff, 0 -0.7px #fff",
+    fontSize: "1.1rem",
   },
 }));
 /**
@@ -137,10 +137,12 @@ export default function HomeView() {
             paragraph
             className={classes.subtitle_shadow}
           >
-            <strong>
-              Serving new medical and health professionals' schools in the
-              Sub-Saharan Community.
-            </strong>
+            <i style={{ color: "white" }}>
+              New African Medical Schools Learning{" "}
+              <span style={{ color: "#16306d" }}>
+                <strong>Together</strong>
+              </span>
+            </i>
           </Typography>
 
           <Grid item>
@@ -155,68 +157,220 @@ export default function HomeView() {
           </Grid>
         </Container>
       </div>
-
-      <Container className={classes.cardGrid} maxWidth="lg">
-        <Typography variant="h4" className={classes.featuredNewsTitle}>
-          <strong>Featured News</strong>
-        </Typography>
-        <Grid container spacing={8}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Paper>
-              <Typography className={classes.featuresTitle} variant="h4">
-                Who We Are
-              </Typography>
-
-              <Typography component="h3">
-                <strong>
-                  To promote competency-based and other undergraduate and
-                  postgraduate curricula, appropriate to the needs and context
-                  of each participating country.{" "}
-                </strong>
-              </Typography>
-            </Paper>
+      <Box p={8} style={{ backgroundColor: "#6694d7" }}>
+        <Container className={classes.cardGrid} maxWidth="lg">
+          <Typography variant="h4" style={{ color: "#16306d" }}>
+            <strong>Goals & Objectives</strong>
+          </Typography>
+          <Grid container style={{ color: "white" }}>
+            <Grid item xs={6}>
+              <List component="ol">
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>001.</strong> To
+                        promote competency-based and other undergraduate and
+                        postgraduate curricula, appropriate to the needs and
+                        context of each participating country.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>002.</strong> To
+                        promote faculty and trainee idea exchanges between the
+                        participating medical schools and other healthcare
+                        networks.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>003.</strong> To
+                        promote south-south and north-south partnerships.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Grid>
+            <Grid item xs={6}>
+              <List component="ol">
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>004.</strong> To
+                        promote needs-based/translational-relevant research.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>005.</strong> To
+                        benchmark and support one another’s progress
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography type="h6" style={{ fontSize: "1.5rem" }}>
+                        <strong style={{ color: "#16306d" }}>006.</strong> To
+                        advocate for improvement in governance and health care
+                        in Africa.
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              </List>
+            </Grid>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Paper>
-              <Typography className={classes.featuresTitle} variant="h4">
-                Our Goals:
-              </Typography>
-
-              <Typography component="h3">
-                <strong>
-                  1. To promote faculty and trainee idea exchanges between the
-                  participating medical schools and other healthcare networks.
-                </strong>
-                <br></br> <br></br>
-                <strong>
-                  2. To promote south-south and north-south partnerships.
-                </strong>
-              </Typography>
-            </Paper>
+        </Container>
+      </Box>
+      <Box p={8} style={{ backgroundColor: "white" }}>
+        <Container className={classes.cardGrid} maxWidth="lg">
+          <Typography variant="h4" className={classes.featuredNewsTitle}>
+            <strong>Affiliated Organizations</strong>
+          </Typography>
+          <Grid container spacing={5}>
+            <Grid item xs={4}>
+              <a
+                href="https://www.aasciences.africa/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo2.png"
+                  alt="Logo 1"
+                  style={{ backgroundColor: "black", padding: "20px" }}
+                />
+              </a>
+            </Grid>
+            <Grid item xs={4}>
+              <a
+                href="https://www.cugh.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo23-1.png"
+                  alt="Logo 2"
+                  style={{ padding: "20px" }}
+                />
+              </a>
+            </Grid>
+            <Grid item xs={4}>
+              <a
+                href="https://www.faimer.org/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo234-1.png"
+                  alt="Logo 3"
+                  style={{ padding: "20px" }}
+                />
+              </a>
+            </Grid>
+            <Grid item xs={3}>
+              <a
+                href="https://www.vumc.org/global-health/welcome"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo2346.png"
+                  alt="Logo 3"
+                />
+              </a>
+            </Grid>
+            <Grid item xs={3}>
+              <a
+                href="https://www.afrehealth.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo2345.png"
+                  alt="Logo 3"
+                />
+              </a>
+            </Grid>
+            <Grid item xs={3}>
+              <a
+                href="https://thenetworktufh.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo23467.png"
+                  alt="Logo 3"
+                />
+              </a>
+            </Grid>
+            <Grid item xs={3}>
+              <a
+                href="https://www.fic.nih.gov/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://consams.org/wp-content/uploads/2022/05/Logo234678.png"
+                  alt="Logo 3"
+                />
+              </a>
+            </Grid>
           </Grid>
+        </Container>
+      </Box>
 
-          <Grid item xs={12} sm={6} md={4}>
-            <Paper>
-              <Typography className={classes.featuresTitle} variant="h4">
-                Get Involved
-              </Typography>
-
-              <Typography component="h3">
-                <strong>
-                  {" "}
-                  Sign up as a student or organization and better manage your
-                  students' courseload. Joinour mailing list to receive updates
-                  about our work and events, or reach out if you would like to
-                  explore partnerships or invite us to speak at your event or
-                  campus.
-                </strong>
-              </Typography>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
-
+      <Box p={8} style={{ backgroundColor: "#00b39b" }}>
+        <Container className={classes.cardGrid} maxWidth="lg">
+          <Card>
+            <CardHeader
+              title={
+                <Typography variant="h4">Help Support our Cause</Typography>
+              }
+              subheader={
+                <Typography variant="p" style={{ color: "#888888" }}>
+                  Support Us and Change the Course of Someone's Life Today!
+                </Typography>
+              }
+            ></CardHeader>
+            <CardContent>
+              <Button
+                className={classes.payPalButton}
+                variant="contained"
+                onClick={() => setPay(true)}
+              >
+                <FontAwesomeIcon
+                  icon={faPaypal}
+                  style={{ marginRight: "5px" }}
+                />
+                <strong>{"Donate with PayPal"}</strong>
+              </Button>
+            </CardContent>
+          </Card>
+        </Container>
+      </Box>
       <Dialog open={pay} onClose={() => setPay(false)}>
         <PayPalScriptProvider
           options={{
