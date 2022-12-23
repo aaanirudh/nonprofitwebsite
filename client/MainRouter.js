@@ -20,6 +20,7 @@ import AdminRoute from "./auth/AdminRoute";
 import Applications from "./admin/Applications";
 import { makeStyles } from "@material-ui/core/styles";
 import UserManagement from "./admin/UserManagement";
+import ADoctorOfMyOwn from "./static_pages/ADoctorOfMyOwn";
 
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
@@ -53,6 +54,7 @@ const MainRouter = () => {
           <Route path="/leadership" component={Leadership} />
           <Route path="/memberships" component={Memberships} />
           <Route path="/membershipfee" component={MembershipFee} />
+          <Route path="/adoctorofmyown" component={ADoctorOfMyOwn} />
           <PrivateRoute path="/blogs" component={Blogs} />
           <PrivateRoute path="/courses" component={Courses} />
           <PrivateRoute path="/createblog" component={NewBlog} />

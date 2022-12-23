@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "200px",
     paddingRight: "200px",
     paddingTop: "60px",
-    paddingBottom: "100px",
+    // paddingBottom: "100px",
   },
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AboutUs = withRouter(function () {
+const ADoctorOfMyOwn = withRouter(function () {
   const classes = useStyles();
   const [pay, setPay] = useState(false);
   const createOrder = (data, actions) => {
@@ -106,37 +106,38 @@ const AboutUs = withRouter(function () {
       <div style={{ backgroundColor: "white" }}>
         <div className={classes.aboutus_content}>
           <Typography variant="h3" style={{ marginBottom: "15px" }}>
-            <strong>About CONSAMS</strong>
+            <strong>A Doctor of My Own</strong>
           </Typography>
 
           <Divider />
 
-          <Typography
-            variant="h5"
-            style={{ marginTop: "20px", marginBottom: "30px" }}
-          >
-            <strong>
-              Founded 2011 : Five Southern African Medical schools;
-              <br />
-              Expanded 2015 & 2022 : Include Sub-Sahara African Medical Schools.
-            </strong>
-          </Typography>
-
-          <Typography variant="h6">
-            CONSAMS - The “Consortium of New Sub-Sahara African Medical Schools”
-            - was founded in 2011 under the original name of the “Consortium of
-            New Southern African Medical Schools.” At an ensuing Annual General
-            Meeting, it was decided to expand the organization to include
-            members across the African continent and beyond southern Africa -
-            hence the name change from “Southern African” to Sub-Sahara African.
+          <Typography variant="h6" style={{ marginTop: "20px" }}>
+            A Doctor of My Own, director by Trisha Pasricha as a Vanderbilt
+            University medical study under supervision of her mentor Dr Quentin
+            Eichbaum (a native of Namibia), explores the emerging stories of
+            students at the newly-opened University of Namibia School of
+            Medicine in Windhoek. Fresh out of organic chemistry, the students
+            will trek to rural villages, training with patients who have never
+            before met a doctor from their own country. The challenges are
+            enormous–and so is the pressure. Some students will leave in the
+            brain drain, never to return. Yet buried in the sea of endless
+            patients and faced with unexpected responsibilities, a few may rise
+            to find their calling. And if they do, medical education will
+            revolutionize healthcare in Africa.
           </Typography>
 
           <br />
 
           <Typography variant="h6">
-            Today CONSAMS is rapidly expanding across Africa to include new
-            medical schools that are within about 10-15 years of graduating
-            their first class of medical students.
+            The documentary features interviews from key leaders in global
+            health and medical education including: Dr. Julio Frenk (former Dean
+            of Harvard School of Public Health), Dr. Quentin Eichbaum (Professor
+            and Program Director, Vanderbilt University School of Medicine), and
+            Dr. Philip Odonkor (former deputy dean, University of Namibia School
+            of Medicine). Through interviews of students, allied health workers,
+            and leaders in the field, the film captures first-hand accounts of
+            the day-to-day battles of healthcare delivery and training new
+            physicians in the country.
           </Typography>
         </div>
       </div>
@@ -145,97 +146,14 @@ const AboutUs = withRouter(function () {
         style={{ backgroundColor: "white" }}
         className={classes.aboutus_content}
       >
-        <Typography variant="h3" style={{ marginBottom: "15px" }}>
-          <strong>The Founding Members of CONSAMS</strong>
-        </Typography>
-        <Divider />
         <Container className={classes.cardGrid} maxWidth="lg">
-          <Grid container spacing={5}>
-            <Grid item xs={4}>
-              <a
-                href="https://www.cbu.ac.zm/schoolsAndUnits/schoolofmedicine/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={copperbelt}
-                  alt="Logo 1"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-            <Grid item xs={4}>
-              <a
-                href="https://www.nul.ls/health/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={lesotho}
-                  alt="Logo 2"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-            <Grid item xs={4}>
-              <a
-                href="https://www.utu.fi/en/university/faculty-of-medicine/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={turku}
-                  alt="Logo 3"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-            <Grid item xs={4}>
-              <a
-                href="https://www.unam.edu.na/faculty-of-health-sciences#SoM"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={unam}
-                  alt="Logo 3"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-            <Grid item xs={4}>
-              <a
-                href="https://cidma.eu/lurio-university/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={unidelurio}
-                  alt="Logo 3"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-            <Grid item xs={4}>
-              <a
-                href="https://medschool.vanderbilt.edu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="250px"
-                  src={vusm}
-                  alt="Logo 3"
-                  style={{ padding: "20px" }}
-                />
-              </a>
-            </Grid>
-          </Grid>
+          <iframe
+            allowfullscreen
+            width="1280px"
+            height="720px"
+            frameborder="0"
+            src="https://player.vimeo.com/video/97321059?color&autopause=0&loop=0&muted=0&title=1&portrait=1&byline=1#t="
+          ></iframe>
         </Container>
       </Box>
       <Box p={8} style={{ backgroundColor: "#00b39b" }}>
@@ -287,4 +205,4 @@ const AboutUs = withRouter(function () {
   );
 });
 
-export default AboutUs;
+export default ADoctorOfMyOwn;

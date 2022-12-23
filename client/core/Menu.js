@@ -70,8 +70,8 @@ const Menu = withRouter(function ({ history }) {
               link: "aboutus",
             },
             {
-              name: "Our History",
-              link: "ourhistory",
+              name: "A Doctor Of My Own",
+              link: "adoctorofmyown",
             },
             {
               name: "Leadership",
