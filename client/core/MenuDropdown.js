@@ -7,8 +7,27 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuList from "@material-ui/core/MenuList";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  menubutton: {
+    "&:hover": {
+      background: "#f5f5f5",
+      color: "#16306D",
+    },
+  },
+  menuitem: {
+    fontSize: "16px",
+    background: "none",
+    "&:hover": {
+      background: "#f5f5f5",
+      color: "#16306D",
+    },
+  },
+}));
 export default function MenuDropdown({ title, options }) {
+  const classes = useStyles();
+
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const handleClick = (event) => {
@@ -29,7 +48,9 @@ export default function MenuDropdown({ title, options }) {
           flexGrow: "1",
           textTransform: "none",
           minWidth: "10vw",
+          fontSize: "20px",
         }}
+        className={classes.menubutton}
         ref={anchorRef}
         aria-controls={open ? "composition-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
@@ -54,18 +75,22 @@ export default function MenuDropdown({ title, options }) {
                 placement === "bottom-start" ? "left top" : "left bottom",
             }}
           >
-            <Paper>
+            <Paper style={{ width: "250px" }}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}
                   id="composition-menu"
+                  style={{ fontSize: "20px" }}
                   aria-labelledby="composition-button"
                 >
                   {options?.map((val) => (
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem
+                      className={classes.menuitem}
+                      onClick={handleClose}
+                    >
                       <Link
                         to={"/" + val.link}
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", color: "black" }}
                       >
                         {val.name}
                       </Link>

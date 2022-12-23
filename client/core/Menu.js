@@ -70,16 +70,12 @@ const Menu = withRouter(function ({ history }) {
               link: "aboutus",
             },
             {
-              name: "A Doctor Of My Own",
-              link: "adoctorofmyown",
-            },
-            {
               name: "Leadership",
               link: "leadership",
             },
           ]}
         />
-        <MenuDropdown title="Partners" />
+        {/* <MenuDropdown title="Partners" /> */}
         <MenuDropdown
           title="Memberships"
           options={[
@@ -109,16 +105,16 @@ const Menu = withRouter(function ({ history }) {
           title="Media"
           options={[
             {
-              name: "News",
-              link: "news",
+              name: "A Doctor Of My Own",
+              link: "adoctorofmyown",
             },
             {
               name: "Photo Gallery",
               link: "gallery",
             },
             {
-              name: "Newsletter",
-              link: "newsletter",
+              name: "Conferences",
+              link: "conferences",
             },
           ]}
         />
